@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" 
+      content="### Network ScenarioWe have three servers in two different physical locations Description | Network 1 | Network 2----..." >
+<meta name="author" content="Aigars Dzerviniks">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>Install Glassfish 4 Cluster &middot; Brume</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="/public/css/animate.min.css">
+<link rel="stylesheet" href="/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+
+
+<!-- feed links -->
+<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
+
+  </head>
+  <body>
+    <div class="container amber">
+      <header class="top row gutters">
+        <div class="col span_2 center">
+          <!-- TODO: add baseurl to the logo link -->
+          <a href="" id="logo" title="Brume"
+             style="background-image: url(https://pbs.twimg.com/profile_images/378800000255118762/5faff7b8fcdde5d47ffeafcea3540503.png);"></a>
+        </div>
+        <nav class="col span_10 top-navbar">
+  
+  <a href="/" title="Home"
+     >Home</a>
+  
+  <a href="/about" title="About"
+     >About</a>
+  
+</nav>
+
+      </header>
+
+      <article class="single row gutters">
+  <time class="published" datetime="2015-05-21">21 May 2015</time>
+  <h2>Install Glassfish 4 Cluster</h2>
+
+  <h3>Network Scenario</h3>
+
+<p>We have three servers in two different physical locations</p>
+
+<table><thead>
+<tr>
+<th>Description</th>
+<th>Network 1</th>
+<th>Network 2</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Firewall</td>
+<td><code>farm0.cognicio.us</code></td>
+<td><code>farm1.cognicio.us</code></td>
+</tr>
+<tr>
+<td>Admin</td>
+<td><code>central.cognicio.us</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Node</td>
+<td><code>node0.cognicio.us</code></td>
+<td><code>node2.cognicio.us</code></td>
+</tr>
+<tr>
+<td>Node</td>
+<td><code>node1.cognicio.us</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Admin and Node servers have private IPs and are accesibles via Firewall Servers using a simple port forwarding mechanism</p>
+
+<p>Each Admin and Node servers are equal machines with a fresh <a href="/install-java8-on-centos7/">Install of Java 8 on Centos 7</a>, is mandatory create an user glassfish in each of this servers, passwords can differ (please!)</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">node0# useradd glassfish
+node0# passwd glassfish</code></pre></div>
+
+<h3>Download and Install Glassfish 4</h3>
+
+<p>First, we proceed to Glassfish 4 installation only in Admin server <code>central.cognicio.us</code></p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">central# cd /opt
+central# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+central# unzip glassfish-4.1.zip
+central# chown -R glassfish:glassfish glassfish4</code></pre></div>
+
+<p>Is mandatory to create a domain for Glassfish</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">central# cd /opt/glassfish4
+central# su glassfish
+central$ bin/asadmin
+asadmin&gt; create-domain --adminport 4848 centraldomain
+Enter admin user name [Enter to accept default &quot;admin&quot; / no password]&gt;admin
+Enter the admin password [Enter to accept default of no password]&gt; 
+Enter the admin password again&gt; 
+Using port 4848 for Admin.
+Using default port 8080 for HTTP Instance.
+Using default port 7676 for JMS.
+Using default port 3700 for IIOP.
+Using default port 8181 for HTTP_SSL.
+Using default port 3820 for IIOP_SSL.
+Using default port 3920 for IIOP_MUTUALAUTH.
+Using default port 8686 for JMX_ADMIN.
+Using default port 6666 for OSGI_SHELL.
+Using default port 9009 for JAVA_DEBUGGER.
+Distinguished Name of the self-signed X.509 Server Certificate is:
+[CN=central,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+Distinguished Name of the self-signed X.509 Server Certificate is:
+[CN=central-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+Domain centraldomain created.
+Domain centraldomain admin port is 4848.
+Domain centraldomain admin user is &quot;admin&quot;.
+Command create-domain executed successfully.
+asadmin&gt;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">asadmin&gt; start-domain centraldomain
+Waiting for centraldomain to start ........
+Successfully started the domain : centraldomain
+domain  Location: /opt/glassfish4/glassfish/domains/centraldomain
+Log File: /opt/glassfish4/glassfish/domains/centraldomain/logs/server.log
+Admin Port: 4848
+Command start-domain executed successfully.
+asadmin&gt;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">asadmin&gt; enable-secure-admin --port 4848
+Enter admin user name&gt;  admin
+Enter admin password for user &quot;admin&quot;&gt; 
+You must restart all running servers for the change in secure admin to take effect.
+Command enable-secure-admin executed successfully.
+asadmin&gt;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">central# semanage port -a -t http_port_t -p tcp 4848
+central# firewall-cmd --permanent --add-port=4848/tcp
+central# firewall-cmd --reload</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">node1# mkdir /opt/glassfish4
+node1# chown -R glassfish:glassfish /opt/glassfish4</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">asadmin&gt; install-node-ssh node1
+Enter remote password for glassfish@node1&gt;
+Authenticating with password &lt;concealed&gt;
+Authenticating with password &lt;concealed&gt;
+Created installation zip /opt/glassfish4/glassfish9072453720586863332.zip
+Authenticating with password &lt;concealed&gt;
+Authenticating with password &lt;concealed&gt;
+Copying /opt/glassfish4/glassfish9072453720586863332.zip (107575068 bytes) to node1:/opt/glassfish4
+Installing glassfish9072453720586863332.zip into node1:/opt/glassfish4
+Authenticating with password &lt;concealed&gt;
+Removing node1:/opt/glassfish4/glassfish9072453720586863332.zip
+Fixing file permissions of all bin files under node1:/opt/glassfish4
+Fixing file permissions for nadmin file under node1:/opt/glassfish4/glassfish/lib
+Command install-node-ssh executed successfully.
+asadmin&gt; 
+
+
+
+
+
+ [glassfish@central glassfish4]$ bin/asadmin create-password-alias node1-alias
+Enter the alias password&gt; 
+Enter the alias password again&gt; 
+Enter admin user name&gt;  admin
+Enter admin password for user &quot;admin&quot;&gt; 
+Command create-password-alias executed successfully.
+[glassfish@central glassfish4]$ echo &quot;AS_ADMIN_SSHPASSWORD=\${ALIAS=node1-alias}&quot; &gt;&gt; node1.password
+[glassfish@central glassfish4]$ bin/asadmin  install-node-ssh --passwordfile node1.password node1
+Password is aliased. To obtain the real password, enter master password for exampledomain&#39;s key store&gt;
+Authenticating with password &lt;concealed&gt;
+Authenticating with password &lt;concealed&gt;
+Created installation zip /opt/glassfish4/glassfish7254357664837807752.zip
+Authenticating with password &lt;concealed&gt;
+Authenticating with password &lt;concealed&gt;
+Copying /opt/glassfish4/glassfish7254357664837807752.zip (107575176 bytes) to node1:/opt/glassfish4
+Installing glassfish7254357664837807752.zip into node1:/opt/glassfish4
+Authenticating with password &lt;concealed&gt;
+Removing node1:/opt/glassfish4/glassfish7254357664837807752.zip
+Fixing file permissions of all bin files under node1:/opt/glassfish4
+Fixing file permissions for nadmin file under node1:/opt/glassfish4/glassfish/lib
+Command install-node-ssh executed successfully.
+[glassfish@central glassfish4]$ bin/asadmin create-node-ssh --passwordfile node1.password --nodehost node1 node1
+Enter admin user name&gt;  admin
+Enter admin password for user &quot;admin&quot;&gt; 
+Command create-node-ssh executed successfully.</code></pre></div>
+
+</article>
+
+
+      <footer>
+        <p>
+          This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/deed.en_US">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/public/js/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("article").fitVids();
+      });
+    </script>
+  </body>
+</html>

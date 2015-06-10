@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" 
+      content="### Downloading and Install Latest HamachiDownload latest Logmein Hamachi release from its official download page or ..." >
+<meta name="author" content="Aigars Dzerviniks">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>Install Hamachi on CentOS 7 &middot; Brume</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="/public/css/animate.min.css">
+<link rel="stylesheet" href="/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+
+
+<!-- feed links -->
+<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
+
+  </head>
+  <body>
+    <div class="container amber">
+      <header class="top row gutters">
+        <div class="col span_2 center">
+          <!-- TODO: add baseurl to the logo link -->
+          <a href="" id="logo" title="Brume"
+             style="background-image: url(https://pbs.twimg.com/profile_images/378800000255118762/5faff7b8fcdde5d47ffeafcea3540503.png);"></a>
+        </div>
+        <nav class="col span_10 top-navbar">
+  
+  <a href="/" title="Home"
+     >Home</a>
+  
+  <a href="/about" title="About"
+     >About</a>
+  
+</nav>
+
+      </header>
+
+      <article class="single row gutters">
+  <time class="published" datetime="2015-06-03">03 June 2015</time>
+  <h2>Install Hamachi on CentOS 7</h2>
+
+  <h3>Downloading and Install Latest Hamachi</h3>
+
+<p>Download latest Logmein Hamachi release from its official download page or use following command to download from shell</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text"># wget https://secure.logmein.com/labs/logmein-hamachi-2.1.0.139-1.x86_64.rpm</code></pre></div>
+
+<p><code>logmein-hamachi</code> package depends on <code>redhat-lsb-core module</code>, install them using <code>yum</code></p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text"># yum install redhat-lsb-core logmein-hamachi-2.1.0.139-1.x86_64.rpm</code></pre></div>
+
+<p>If you type <code>ip addr</code> in shell, you can see a new interface called <code>ham0</code></p>
+
+<p><img src="/public/images/ham0.png" alt="ham0 Interface"></p>
+
+<h3>Joining to Hamachi Network</h3>
+
+<p>In LogmeIn page, in Networks section, go to My Networks and copy your network ID</p>
+
+<p>In your host, use  <code>hamachi</code> command for request access to your network as following</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text"># hamachi login
+Logging in .......... ok
+# hamachi do-join 000-000-000
+Joining 000-000-000 .. ok, request sent, waiting for approval</code></pre></div>
+
+<p><strong>Note:</strong> <em><code>000-000-000</code> is your network ID</em></p>
+
+<p>Finally go to LogmeIn dashboard for approve host access, then hamachi assigns to <code>ham0</code> a valid IP in your Hamachi Network</p>
+
+<p><img src="/public/images/ham1.png" alt="ham0 Ready"></p>
+
+</article>
+
+
+      <footer>
+        <p>
+          This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/deed.en_US">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/public/js/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("article").fitVids();
+      });
+    </script>
+  </body>
+</html>

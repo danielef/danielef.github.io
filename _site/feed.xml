@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Brume</title>
+    <link></link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <description>It's simple. It's easy to use. It's a Jekyll theme.</description>
+    <language>en-us</language>
+    <pubDate>Wed, 03 Jun 2015 13:14:02 -0500</pubDate>
+    <lastBuildDate>Wed, 03 Jun 2015 13:14:02 -0500</lastBuildDate>
+
+    
+      <item>
+        <title>Install Hamachi on CentOS 7</title>
+        <link>/install-hamachi-on-centos7</link>
+        <pubDate>Wed, 03 Jun 2015 00:00:00 -0500</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;h3&gt;Downloading and Install Latest Hamachi&lt;/h3&gt;
+
+&lt;p&gt;Download latest Logmein Hamachi release from its official download page or use following command to download from shell&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# wget https://secure.logmein.com/labs/logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;logmein-hamachi&lt;/code&gt; package depends on &lt;code&gt;redhat-lsb-core module&lt;/code&gt;, install them using &lt;code&gt;yum&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# yum install redhat-lsb-core logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you type &lt;code&gt;ip addr&lt;/code&gt; in shell, you can see a new interface called &lt;code&gt;ham0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/images/ham0.png&quot; alt=&quot;ham0 Interface&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;Joining to Hamachi Network&lt;/h3&gt;
+
+&lt;p&gt;In LogmeIn page, in Networks section, go to My Networks and copy your network ID&lt;/p&gt;
+
+&lt;p&gt;In your host, use  &lt;code&gt;hamachi&lt;/code&gt; command for request access to your network as following&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# hamachi login
+Logging in .......... ok
+# hamachi do-join 000-000-000
+Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;&lt;code&gt;000-000-000&lt;/code&gt; is your network ID&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally go to LogmeIn dashboard for approve host access, then hamachi assigns to &lt;code&gt;ham0&lt;/code&gt; a valid IP in your Hamachi Network&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/images/ham1.png&quot; alt=&quot;ham0 Ready&quot;&gt;&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Install Glassfish 4 Cluster</title>
+        <link>/install-glassfish-cluster</link>
+        <pubDate>Thu, 21 May 2015 00:00:00 -0500</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;h3&gt;Network Scenario&lt;/h3&gt;
+
+&lt;p&gt;We have three servers in two different physical locations&lt;/p&gt;
+
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Network 1&lt;/th&gt;
+&lt;th&gt;Network 2&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Firewall&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;farm0.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;farm1.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Admin&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;central.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Node&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;node0.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;node2.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Node&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;node1.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;p&gt;Admin and Node servers have private IPs and are accesibles via Firewall Servers using a simple port forwarding mechanism&lt;/p&gt;
+
+&lt;p&gt;Each Admin and Node servers are equal machines with a fresh &lt;a href=&quot;/install-java8-on-centos7/&quot;&gt;Install of Java 8 on Centos 7&lt;/a&gt;, is mandatory create an user glassfish in each of this servers, passwords can differ (please!)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;node0# useradd glassfish
+node0# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Download and Install Glassfish 4&lt;/h3&gt;
+
+&lt;p&gt;First, we proceed to Glassfish 4 installation only in Admin server &lt;code&gt;central.cognicio.us&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;central# cd /opt
+central# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+central# unzip glassfish-4.1.zip
+central# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is mandatory to create a domain for Glassfish&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;central# cd /opt/glassfish4
+central# su glassfish
+central$ bin/asadmin
+asadmin&amp;gt; create-domain --adminport 4848 centraldomain
+Enter admin user name [Enter to accept default &amp;quot;admin&amp;quot; / no password]&amp;gt;admin
+Enter the admin password [Enter to accept default of no password]&amp;gt; 
+Enter the admin password again&amp;gt; 
+Using port 4848 for Admin.
+Using default port 8080 for HTTP Instance.
+Using default port 7676 for JMS.
+Using default port 3700 for IIOP.
+Using default port 8181 for HTTP_SSL.
+Using default port 3820 for IIOP_SSL.
+Using default port 3920 for IIOP_MUTUALAUTH.
+Using default port 8686 for JMX_ADMIN.
+Using default port 6666 for OSGI_SHELL.
+Using default port 9009 for JAVA_DEBUGGER.
+Distinguished Name of the self-signed X.509 Server Certificate is:
+[CN=central,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+Distinguished Name of the self-signed X.509 Server Certificate is:
+[CN=central-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+Domain centraldomain created.
+Domain centraldomain admin port is 4848.
+Domain centraldomain admin user is &amp;quot;admin&amp;quot;.
+Command create-domain executed successfully.
+asadmin&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;asadmin&amp;gt; start-domain centraldomain
+Waiting for centraldomain to start ........
+Successfully started the domain : centraldomain
+domain  Location: /opt/glassfish4/glassfish/domains/centraldomain
+Log File: /opt/glassfish4/glassfish/domains/centraldomain/logs/server.log
+Admin Port: 4848
+Command start-domain executed successfully.
+asadmin&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;asadmin&amp;gt; enable-secure-admin --port 4848
+Enter admin user name&amp;gt;  admin
+Enter admin password for user &amp;quot;admin&amp;quot;&amp;gt; 
+You must restart all running servers for the change in secure admin to take effect.
+Command enable-secure-admin executed successfully.
+asadmin&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;central# semanage port -a -t http_port_t -p tcp 4848
+central# firewall-cmd --permanent --add-port=4848/tcp
+central# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;node1# mkdir /opt/glassfish4
+node1# chown -R glassfish:glassfish /opt/glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;asadmin&amp;gt; install-node-ssh node1
+Enter remote password for glassfish@node1&amp;gt;
+Authenticating with password &amp;lt;concealed&amp;gt;
+Authenticating with password &amp;lt;concealed&amp;gt;
+Created installation zip /opt/glassfish4/glassfish9072453720586863332.zip
+Authenticating with password &amp;lt;concealed&amp;gt;
+Authenticating with password &amp;lt;concealed&amp;gt;
+Copying /opt/glassfish4/glassfish9072453720586863332.zip (107575068 bytes) to node1:/opt/glassfish4
+Installing glassfish9072453720586863332.zip into node1:/opt/glassfish4
+Authenticating with password &amp;lt;concealed&amp;gt;
+Removing node1:/opt/glassfish4/glassfish9072453720586863332.zip
+Fixing file permissions of all bin files under node1:/opt/glassfish4
+Fixing file permissions for nadmin file under node1:/opt/glassfish4/glassfish/lib
+Command install-node-ssh executed successfully.
+asadmin&amp;gt; 
+
+
+
+
+
+ [glassfish@central glassfish4]$ bin/asadmin create-password-alias node1-alias
+Enter the alias password&amp;gt; 
+Enter the alias password again&amp;gt; 
+Enter admin user name&amp;gt;  admin
+Enter admin password for user &amp;quot;admin&amp;quot;&amp;gt; 
+Command create-password-alias executed successfully.
+[glassfish@central glassfish4]$ echo &amp;quot;AS_ADMIN_SSHPASSWORD=\${ALIAS=node1-alias}&amp;quot; &amp;gt;&amp;gt; node1.password
+[glassfish@central glassfish4]$ bin/asadmin  install-node-ssh --passwordfile node1.password node1
+Password is aliased. To obtain the real password, enter master password for exampledomain&amp;#39;s key store&amp;gt;
+Authenticating with password &amp;lt;concealed&amp;gt;
+Authenticating with password &amp;lt;concealed&amp;gt;
+Created installation zip /opt/glassfish4/glassfish7254357664837807752.zip
+Authenticating with password &amp;lt;concealed&amp;gt;
+Authenticating with password &amp;lt;concealed&amp;gt;
+Copying /opt/glassfish4/glassfish7254357664837807752.zip (107575176 bytes) to node1:/opt/glassfish4
+Installing glassfish7254357664837807752.zip into node1:/opt/glassfish4
+Authenticating with password &amp;lt;concealed&amp;gt;
+Removing node1:/opt/glassfish4/glassfish7254357664837807752.zip
+Fixing file permissions of all bin files under node1:/opt/glassfish4
+Fixing file permissions for nadmin file under node1:/opt/glassfish4/glassfish/lib
+Command install-node-ssh executed successfully.
+[glassfish@central glassfish4]$ bin/asadmin create-node-ssh --passwordfile node1.password --nodehost node1 node1
+Enter admin user name&amp;gt;  admin
+Enter admin password for user &amp;quot;admin&amp;quot;&amp;gt; 
+Command create-node-ssh executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Install Java 8 on Centos 7</title>
+        <link>/install-java8-on-centos7</link>
+        <pubDate>Tue, 19 May 2015 00:00:00 -0500</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;h3&gt;Downloading Latest Java Archive&lt;/h3&gt;
+
+&lt;p&gt;Download latest Java SE Development Kit 8 release from its official download page or use following commands to download from shell&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# wget --no-cookies --no-check-certificate --header &amp;quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&amp;quot; &amp;quot;http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# tar xzfv jdk-8u45-linux-x64.tar.gz&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;For production servers is highly recomended installing Java Server JRE. The Server JRE includes tools for JVM monitoring and tools commonly required for server applications, but does not include browser integration (the Java plug-in)&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# wget --no-cookies --no-check-certificate --header &amp;quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&amp;quot; &amp;quot;http://download.oracle.com/otn-pub/java/jdk/8u45-b14/server-jre-8u45-linux-x64.tar.gz&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# tar xzfv server-jre-8u45-linux-x64.tar.gz&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;If your Centos 7 is a fresh minimal installation, maybe you have to install wget utility using yum&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum -y install wget&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Configuring Environment Variables&lt;/h3&gt;
+
+&lt;p&gt;Most of Java based application’s uses environment variables to work. CentOS provides of &lt;code&gt;/etc/profile.d/&lt;/code&gt; directory for customizing environment variables per application&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# echo &amp;quot;export JAVA_HOME=/opt/jdk1.8.0_45/&amp;quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# echo &amp;quot;export JRE_HOME=/opt/jdk1.8.0_45/jre/&amp;quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# echo &amp;quot;export PATH=\$PATH:\$JAVA_HOME/bin/:\$JRE_HOME/bin/&amp;quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# source /etc/profile.d/java.sh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Install Java with Alternatives&lt;/h3&gt;
+
+&lt;p&gt;After setting Environment Variables use Alternatives to install Java&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# alternatives --config java&lt;/span&gt;
+
+There are &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; programs which provide &lt;span class=&quot;s1&quot;&gt;&amp;#39;java&amp;#39;&lt;/span&gt;.
+
+  Selection    Command
+-----------------------------------------------
+   &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;           /opt/jdk1.8.0_45/bin/java
+
+Enter to keep the current selection&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, or &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;selection number: 1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;At this point &lt;em&gt;Java 8&lt;/em&gt; has been successfully installed on your system.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;If you performed this installation in a Development Server,  we also recommend to setup javac and jar commands path using alternatives&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/jar jar $JAVA_HOME/bin/jar 1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# alternatives --set jar $JAVA_HOME/bin/jar&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# alternatives --set javac $JAVA_HOME/bin/javac&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Hello World</title>
+        <link>/hello-world</link>
+        <pubDate>Wed, 31 Dec 2014 00:00:00 -0600</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;p&gt;Hello World!&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# show.html.erb&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      </item>
+    
+      <item>
+        <title>Demo post</title>
+        <link>/demo-post</link>
+        <pubDate>Fri, 07 Mar 2014 00:00:00 -0600</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;p&gt;Praesent tincidunt vestibulum sem nec eleifend. Pellentesque adipiscing mollis adipiscing. Sed ipsum sem, eleifend eget dapibus in, tincidunt ut dolor. Curabitur gravida urna leo, eget auctor turpis feugiat non. Vivamus pharetra, lorem id ullamcorper rutrum, eros erat condimentum erat, ac dignissim lorem nisi nec nunc. Praesent tellus mi, volutpat quis nisl et, consectetur blandit nibh.&lt;/p&gt;
+
+&lt;p&gt;Nulla sit amet nulla non odio sodales mollis elementum sed sem. Aenean et laoreet enim. Curabitur vulputate, mi rutrum commodo condimentum, enim nunc feugiat magna, vel rutrum sapien ante nec ante. Donec nec nibh placerat, molestie felis ac, vulputate arcu. Donec condimentum pellentesque nibh vel tincidunt. Fusce sem ipsum, varius at laoreet vitae, accumsan sed nisl. Nunc eget viverra diam. Aliquam pulvinar, enim id commodo tincidunt, risus lectus pharetra lacus, et semper enim ligula ut mauris. Sed vitae sollicitudin ante. In sollicitudin placerat dui et sagittis.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas leo id tortor feugiat, sit amet cursus diam mollis. Nunc sit amet tellus est. Nunc lacus nisl, gravida ut aliquam vel, molestie eget odio. Nulla facilisi. Ut sed libero pharetra nunc volutpat hendrerit. Mauris eget mi adipiscing, congue tellus ut, scelerisque eros. Phasellus ullamcorper dictum tellus nec pretium.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Integer molestie orci ante, nec dictum metus aliquam ut. Donec id tristique enim. Quisque tellus est, dignissim ut justo ac, volutpat fringilla mi. Duis ultricies nec sapien vitae blandit. &lt;strong&gt;Suspendisse sed est mi&lt;/strong&gt;. Mauris varius sapien vel nulla accumsan, id tincidunt ipsum ultrices. Sed eget magna mauris. Etiam porttitor lacus ullamcorper lacus tincidunt aliquam. Sed feugiat congue fringilla. Nunc velit diam, vulputate sed metus vitae, iaculis tempor arcu. Proin consectetur a erat in dignissim.&lt;/p&gt;
+
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tables&lt;/th&gt;
+&lt;th style=&quot;text-align: center&quot;&gt;Are&lt;/th&gt;
+&lt;th style=&quot;text-align: right&quot;&gt;Cool&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;col 3 is&lt;/td&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;right-aligned&lt;/td&gt;
+&lt;td style=&quot;text-align: right&quot;&gt;$1600&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;col 2 is&lt;/td&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;centered&lt;/td&gt;
+&lt;td style=&quot;text-align: right&quot;&gt;$12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;zebra stripes&lt;/td&gt;
+&lt;td style=&quot;text-align: center&quot;&gt;are neat&lt;/td&gt;
+&lt;td style=&quot;text-align: right&quot;&gt;$1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;p&gt;Pellentesque adipiscing mollis adipiscing.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nulla sit amet nulla non odio sodales mollis elementum sed sem.&lt;/li&gt;
+&lt;li&gt;Donec id tristique enim. Quisque tellus est, dignissim ut justo ac, volutpat fringilla mi.&lt;/li&gt;
+&lt;li&gt;Nam luctus erat dolor, non viverra nulla varius at.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Curabitur nec ullamcorper dui, blandit aliquet ipsum. Integer suscipit odio quis eros fermentum auctor. Sed tincidunt quam eleifend, egestas erat vulputate, tincidunt metus. Maecenas gravida sodales mi nec posuere. Cras vel nisi condimentum, hendrerit lacus sed, scelerisque ipsum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc convallis vestibulum erat, quis porta tellus. &lt;em&gt;In lorem erat, sollicitudin varius posuere id, molestie ac eros&lt;/em&gt;. Fusce luctus tellus vitae vulputate venenatis. Sed scelerisque bibendum interdum. Sed pretium commodo ultrices. Fusce luctus quam id porttitor vulputate. Integer ornare consectetur diam eget rutrum. Etiam eget sapien metus.&lt;/p&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;Ornare&lt;/dt&gt;
+  &lt;dd&gt;Cras vel nisi condimentum, hendrerit lacus sed, scelerisque ipsum.&lt;/dd&gt;
+  &lt;dt&gt;Convallis&lt;/dt&gt;
+  &lt;dd&gt;In lorem erat, sollicitudin varius posuere id, molestie ac eros&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Proin at libero id lorem fermentum elementum quis eget est.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Nam bibendum turpis massa, at accumsan justo fermentum ac.&lt;/li&gt;
+&lt;li&gt;Nulla non nulla ut ante condimentum mattis vel at lectus.&lt;/li&gt;
+&lt;li&gt;Etiam eget tortor tincidunt, iaculis ligula a, tristique massa. Fusce sed congue lorem, interdum sodales nisl.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Etiam consequat euismod ornare. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla pellentesque ipsum vulputate, pellentesque nisl vitae, lacinia sem. Praesent auctor felis et odio ultrices, nec tempor elit lobortis. Etiam ornare massa non risus luctus, id iaculis lacus egestas. Pellentesque massa dolor, mattis id lobortis eget, tristique vitae est.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Nam vulputate leo vitae libero vehicula, id tincidunt velit malesuada. In vel ornare nisi, id semper turpis. Vivamus erat elit, venenatis quis dui at, convallis suscipit sapien. Nunc in nisi scelerisque, aliquam mauris porttitor, facilisis ligula. Vestibulum cursus erat ac turpis bibendum, id pulvinar dolor dapibus. Proin vitae justo et velit imperdiet ultrices id id odio. Cras adipiscing ante vel mauris lobortis rutrum. Aenean eu felis est. In lacinia porttitor risus non sagittis.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Greeter&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;greet&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;john&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Greeter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello, World&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;john&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;greet&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Sed imperdiet interdum ultrices. Phasellus iaculis porttitor lorem nec scelerisque. Suspendisse eros urna, adipiscing vel luctus at, feugiat sit amet arcu. Aliquam porttitor ut urna pellentesque sagittis. Donec pellentesque venenatis diam sit amet cursus. Etiam luctus, metus quis gravida fermentum, tortor arcu consequat metus, eget viverra augue risus ac dui. Fusce faucibus scelerisque quam eu sagittis. Sed sit amet sapien non augue lobortis adipiscing. Sed sagittis at lectus eu tempus. Nulla non nulla ut ante condimentum mattis vel at lectus. Nulla ultricies dui et urna semper ultrices. Sed neque ante, dictum in dignissim luctus, facilisis ornare odio. Aenean tempor ultrices magna non pharetra. Curabitur vulputate nec est aliquet suscipit. Etiam ipsum sapien, dictum quis tristique vel, pretium at elit.&lt;/p&gt;
+</description>
+      </item>
+    
+
+  </channel>
+</rss>
