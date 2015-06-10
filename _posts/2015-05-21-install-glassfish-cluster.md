@@ -8,44 +8,100 @@ title: Install Glassfish 4 Cluster
 
 We have three servers in two different physical locations
 
- Description | Network 1 | Network 2
-------------- |------------ | -------------
- Firewall | `farm0.cognicio.us` | `farm1.cognicio.us`
-Admin | `central.cognicio.us` |
-Node | `node0.cognicio.us` |  `node2.cognicio.us`
-Node | `node1.cognicio.us` | 
+ Description | Network 1 
+------------- |------------
+Balancer | `ha.cognicio.us`
+Admin | `das.cognicio.us`
+Farm | `farm01.cognicio.us`
+Farm | `farm02.cognicio.us`
 
-Admin and Node servers have private IPs and are accesibles via Firewall Servers using a simple port forwarding mechanism
+Admin and Farm servers have private IPs and will access to each others via Private Network
 
-Each Admin and Node servers are equal machines with a fresh [Install of Java 8 on Centos 7](/install-java8-on-centos7/), is mandatory create an user glassfish in each of this servers, passwords can differ (please!)
+### SELinux Configuration
 
-{% highlight text %}
-node0# useradd glassfish
-node0# passwd glassfish
+Is important disable SELinux in Admin and Farm servers in `/etc/selinux/config` (You will need to reboot your systems).
+
+{% highlight bash %}
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+SELINUX=disable
+# SELINUXTYPE= can take one of three two values:
+#     targeted - Targeted processes are protected,
+#     minimum - Modification of targeted policy. Only selected processes are protected.
+#     mls - Multi Level Security protection.
+SELINUXTYPE=targeted
 {% endhighlight %}
 
-### Download and Install Glassfish 4
 
-First, we proceed to Glassfish 4 installation only in Admin server `central.cognicio.us`
+Admin and Farm servers need to [Install of Java 8 on Centos 7](/install-java8-on-centos7/), also is mandatory create an user `glassfish` in each of this servers, passwords can differ (please!)
+
+#### In Admin `das.cognicio.us`
 
 {% highlight text %}
-central# cd /opt
-central# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
-central# unzip glassfish-4.1.zip
-central# chown -R glassfish:glassfish glassfish4
+das# useradd glassfish
+das# passwd glassfish
 {% endhighlight %}
 
-Is mandatory to create a domain for Glassfish
+
+#### In Farm `farm01.cognicio.us`
 
 {% highlight text %}
-central# cd /opt/glassfish4
-central# su glassfish
-central$ bin/asadmin
-asadmin> create-domain --adminport 4848 centraldomain
+farm01# useradd glassfish
+farm01# passwd glassfish
+{% endhighlight %}
+
+#### In Farm `farm02.cognicio.us`
+
+{% highlight text %}
+farm02# useradd glassfish
+farm02# passwd glassfish
+{% endhighlight %}
+
+
+### Glassfish 4 Download and Directory Structure
+
+First, we proceed to Glassfish 4 installation only in Admin
+
+#### In Admin `das.cognicio.us`
+{% highlight text %}
+das# cd /opt
+das# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+das# unzip glassfish-4.1.zip
+das# chown -R glassfish:glassfish glassfish4
+{% endhighlight %}
+
+In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure 
+
+#### In Farm `farm01.cognicio.us`
+{% highlight text %}
+farm01# cd /opt
+farm01# mkdir glassfish4
+farm01# chown -R glassfish:glassfish glassfish4
+{% endhighlight %}
+
+#### In Farm `farm02.cognicio.us`
+{% highlight text %}
+farm02# cd /opt
+farm02# mkdir glassfish4
+farm02# chown -R glassfish:glassfish glassfish4
+{% endhighlight %}
+
+### Config Domain Creation
+
+Is mandatory to create a domain for Glassfish in Admin as `glassfish` user
+
+#### In Admin `das.cognicio.us`
+{% highlight text %}
+# cd /opt/glassfish4
+# su - glassfish
+$ bin/asadmin create-domain dasdomain
 Enter admin user name [Enter to accept default "admin" / no password]>admin
 Enter the admin password [Enter to accept default of no password]> 
 Enter the admin password again> 
-Using port 4848 for Admin.
+Using default port 4848 for Admin.
 Using default port 8080 for HTTP Instance.
 Using default port 7676 for JMS.
 Using default port 3700 for IIOP.
@@ -56,14 +112,13 @@ Using default port 8686 for JMX_ADMIN.
 Using default port 6666 for OSGI_SHELL.
 Using default port 9009 for JAVA_DEBUGGER.
 Distinguished Name of the self-signed X.509 Server Certificate is:
-[CN=central,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+[CN=das.cognicio.us,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
 Distinguished Name of the self-signed X.509 Server Certificate is:
-[CN=central-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
-Domain centraldomain created.
-Domain centraldomain admin port is 4848.
-Domain centraldomain admin user is "admin".
+[CN=das.cognicio.us-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+Domain dasdomain created.
+Domain dasdomain admin port is 4848.
+Domain dasdomain admin user is "admin".
 Command create-domain executed successfully.
-asadmin> 
 {% endhighlight %}
 
 {% highlight text %}

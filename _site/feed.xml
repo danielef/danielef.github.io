@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>It's simple. It's easy to use. It's a Jekyll theme.</description>
     <language>en-us</language>
-    <pubDate>Wed, 03 Jun 2015 13:14:02 -0500</pubDate>
-    <lastBuildDate>Wed, 03 Jun 2015 13:14:02 -0500</lastBuildDate>
+    <pubDate>Wed, 10 Jun 2015 14:24:10 -0500</pubDate>
+    <lastBuildDate>Wed, 10 Jun 2015 14:24:10 -0500</lastBuildDate>
 
     
       <item>
@@ -61,57 +61,99 @@ Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/p
 &lt;tr&gt;
 &lt;th&gt;Description&lt;/th&gt;
 &lt;th&gt;Network 1&lt;/th&gt;
-&lt;th&gt;Network 2&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;&lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;Firewall&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;farm0.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;farm1.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Balancer&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Admin&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;central.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Node&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;node0.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;node2.cognicio.us&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Farm&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Node&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;node1.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Farm&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
 
-&lt;p&gt;Admin and Node servers have private IPs and are accesibles via Firewall Servers using a simple port forwarding mechanism&lt;/p&gt;
+&lt;p&gt;Admin and Farm servers have private IPs and will access to each others via Private Network&lt;/p&gt;
 
-&lt;p&gt;Each Admin and Node servers are equal machines with a fresh &lt;a href=&quot;/install-java8-on-centos7/&quot;&gt;Install of Java 8 on Centos 7&lt;/a&gt;, is mandatory create an user glassfish in each of this servers, passwords can differ (please!)&lt;/p&gt;
+&lt;h3&gt;SELinux Configuration&lt;/h3&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;node0# useradd glassfish
-node0# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Is important disable SELinux in Admin and Farm servers in &lt;code&gt;/etc/selinux/config&lt;/code&gt; (You will need to reboot your systems).&lt;/p&gt;
 
-&lt;h3&gt;Download and Install Glassfish 4&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# This file controls the state of SELinux on the system.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# SELINUX= can take one of these three values:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     enforcing - SELinux security policy is enforced.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     permissive - SELinux prints warnings instead of enforcing.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     disabled - No SELinux policy is loaded.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;SELINUX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;disable
+&lt;span class=&quot;c&quot;&gt;# SELINUXTYPE= can take one of three two values:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     targeted - Targeted processes are protected,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     minimum - Modification of targeted policy. Only selected processes are protected.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     mls - Multi Level Security protection.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;SELINUXTYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;targeted&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;First, we proceed to Glassfish 4 installation only in Admin server &lt;code&gt;central.cognicio.us&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Admin and Farm servers need to &lt;a href=&quot;/install-java8-on-centos7/&quot;&gt;Install of Java 8 on Centos 7&lt;/a&gt;, also is mandatory create an user &lt;code&gt;glassfish&lt;/code&gt; in each of this servers, passwords can differ (please!)&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;central# cd /opt
-central# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
-central# unzip glassfish-4.1.zip
-central# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;p&gt;Is mandatory to create a domain for Glassfish&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# useradd glassfish
+das# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;central# cd /opt/glassfish4
-central# su glassfish
-central$ bin/asadmin
-asadmin&amp;gt; create-domain --adminport 4848 centraldomain
+&lt;h4&gt;In Farm &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# useradd glassfish
+farm01# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;In Farm &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# useradd glassfish
+farm02# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Glassfish 4 Download and Directory Structure&lt;/h3&gt;
+
+&lt;p&gt;First, we proceed to Glassfish 4 installation only in Admin&lt;/p&gt;
+
+&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# cd /opt
+das# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+das# unzip glassfish-4.1.zip
+das# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure &lt;/p&gt;
+
+&lt;h4&gt;In Farm &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# cd /opt
+farm01# mkdir glassfish4
+farm01# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;In Farm &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# cd /opt
+farm02# mkdir glassfish4
+farm02# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Config Domain Creation&lt;/h3&gt;
+
+&lt;p&gt;Is mandatory to create a domain for Glassfish in Admin as &lt;code&gt;glassfish&lt;/code&gt; user&lt;/p&gt;
+
+&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /opt/glassfish4
+# su - glassfish
+$ bin/asadmin create-domain dasdomain
 Enter admin user name [Enter to accept default &amp;quot;admin&amp;quot; / no password]&amp;gt;admin
 Enter the admin password [Enter to accept default of no password]&amp;gt; 
 Enter the admin password again&amp;gt; 
-Using port 4848 for Admin.
+Using default port 4848 for Admin.
 Using default port 8080 for HTTP Instance.
 Using default port 7676 for JMS.
 Using default port 3700 for IIOP.
@@ -122,14 +164,13 @@ Using default port 8686 for JMX_ADMIN.
 Using default port 6666 for OSGI_SHELL.
 Using default port 9009 for JAVA_DEBUGGER.
 Distinguished Name of the self-signed X.509 Server Certificate is:
-[CN=central,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+[CN=das.cognicio.us,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
 Distinguished Name of the self-signed X.509 Server Certificate is:
-[CN=central-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
-Domain centraldomain created.
-Domain centraldomain admin port is 4848.
-Domain centraldomain admin user is &amp;quot;admin&amp;quot;.
-Command create-domain executed successfully.
-asadmin&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+[CN=das.cognicio.us-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+Domain dasdomain created.
+Domain dasdomain admin port is 4848.
+Domain dasdomain admin user is &amp;quot;admin&amp;quot;.
+Command create-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;asadmin&amp;gt; start-domain centraldomain
 Waiting for centraldomain to start ........

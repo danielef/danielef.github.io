@@ -4,7 +4,7 @@
     <!-- meta information -->
 <meta charset="utf-8">
 <meta name="description" 
-      content="### Network ScenarioWe have three servers in two different physical locations Description | Network 1 | Network 2----..." >
+      content="### Network ScenarioWe have three servers in two different physical locations Description | Network 1 ------------- |..." >
 <meta name="author" content="Aigars Dzerviniks">
 
 <!-- Enable responsiveness on mobile devices-->
@@ -62,57 +62,99 @@
 <tr>
 <th>Description</th>
 <th>Network 1</th>
-<th>Network 2</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Firewall</td>
-<td><code>farm0.cognicio.us</code></td>
-<td><code>farm1.cognicio.us</code></td>
+<td>Balancer</td>
+<td><code>ha.cognicio.us</code></td>
 </tr>
 <tr>
 <td>Admin</td>
-<td><code>central.cognicio.us</code></td>
-<td></td>
+<td><code>das.cognicio.us</code></td>
 </tr>
 <tr>
-<td>Node</td>
-<td><code>node0.cognicio.us</code></td>
-<td><code>node2.cognicio.us</code></td>
+<td>Farm</td>
+<td><code>farm01.cognicio.us</code></td>
 </tr>
 <tr>
-<td>Node</td>
-<td><code>node1.cognicio.us</code></td>
-<td></td>
+<td>Farm</td>
+<td><code>farm02.cognicio.us</code></td>
 </tr>
 </tbody></table>
 
-<p>Admin and Node servers have private IPs and are accesibles via Firewall Servers using a simple port forwarding mechanism</p>
+<p>Admin and Farm servers have private IPs and will access to each others via Private Network</p>
 
-<p>Each Admin and Node servers are equal machines with a fresh <a href="/install-java8-on-centos7/">Install of Java 8 on Centos 7</a>, is mandatory create an user glassfish in each of this servers, passwords can differ (please!)</p>
+<h3>SELinux Configuration</h3>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">node0# useradd glassfish
-node0# passwd glassfish</code></pre></div>
+<p>Is important disable SELinux in Admin and Farm servers in <code>/etc/selinux/config</code> (You will need to reboot your systems).</p>
 
-<h3>Download and Install Glassfish 4</h3>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># This file controls the state of SELinux on the system.</span>
+<span class="c"># SELINUX= can take one of these three values:</span>
+<span class="c">#     enforcing - SELinux security policy is enforced.</span>
+<span class="c">#     permissive - SELinux prints warnings instead of enforcing.</span>
+<span class="c">#     disabled - No SELinux policy is loaded.</span>
+<span class="nv">SELINUX</span><span class="o">=</span>disable
+<span class="c"># SELINUXTYPE= can take one of three two values:</span>
+<span class="c">#     targeted - Targeted processes are protected,</span>
+<span class="c">#     minimum - Modification of targeted policy. Only selected processes are protected.</span>
+<span class="c">#     mls - Multi Level Security protection.</span>
+<span class="nv">SELINUXTYPE</span><span class="o">=</span>targeted</code></pre></div>
 
-<p>First, we proceed to Glassfish 4 installation only in Admin server <code>central.cognicio.us</code></p>
+<p>Admin and Farm servers need to <a href="/install-java8-on-centos7/">Install of Java 8 on Centos 7</a>, also is mandatory create an user <code>glassfish</code> in each of this servers, passwords can differ (please!)</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">central# cd /opt
-central# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
-central# unzip glassfish-4.1.zip
-central# chown -R glassfish:glassfish glassfish4</code></pre></div>
+<h4>In Admin <code>das.cognicio.us</code></h4>
 
-<p>Is mandatory to create a domain for Glassfish</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">das# useradd glassfish
+das# passwd glassfish</code></pre></div>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">central# cd /opt/glassfish4
-central# su glassfish
-central$ bin/asadmin
-asadmin&gt; create-domain --adminport 4848 centraldomain
+<h4>In Farm <code>farm01.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">farm01# useradd glassfish
+farm01# passwd glassfish</code></pre></div>
+
+<h4>In Farm <code>farm02.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">farm02# useradd glassfish
+farm02# passwd glassfish</code></pre></div>
+
+<h3>Glassfish 4 Download and Directory Structure</h3>
+
+<p>First, we proceed to Glassfish 4 installation only in Admin</p>
+
+<h4>In Admin <code>das.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">das# cd /opt
+das# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+das# unzip glassfish-4.1.zip
+das# chown -R glassfish:glassfish glassfish4</code></pre></div>
+
+<p>In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure </p>
+
+<h4>In Farm <code>farm01.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">farm01# cd /opt
+farm01# mkdir glassfish4
+farm01# chown -R glassfish:glassfish glassfish4</code></pre></div>
+
+<h4>In Farm <code>farm02.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">farm02# cd /opt
+farm02# mkdir glassfish4
+farm02# chown -R glassfish:glassfish glassfish4</code></pre></div>
+
+<h3>Config Domain Creation</h3>
+
+<p>Is mandatory to create a domain for Glassfish in Admin as <code>glassfish</code> user</p>
+
+<h4>In Admin <code>das.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text"># cd /opt/glassfish4
+# su - glassfish
+$ bin/asadmin create-domain dasdomain
 Enter admin user name [Enter to accept default &quot;admin&quot; / no password]&gt;admin
 Enter the admin password [Enter to accept default of no password]&gt; 
 Enter the admin password again&gt; 
-Using port 4848 for Admin.
+Using default port 4848 for Admin.
 Using default port 8080 for HTTP Instance.
 Using default port 7676 for JMS.
 Using default port 3700 for IIOP.
@@ -123,14 +165,13 @@ Using default port 8686 for JMX_ADMIN.
 Using default port 6666 for OSGI_SHELL.
 Using default port 9009 for JAVA_DEBUGGER.
 Distinguished Name of the self-signed X.509 Server Certificate is:
-[CN=central,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+[CN=das.cognicio.us,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
 Distinguished Name of the self-signed X.509 Server Certificate is:
-[CN=central-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
-Domain centraldomain created.
-Domain centraldomain admin port is 4848.
-Domain centraldomain admin user is &quot;admin&quot;.
-Command create-domain executed successfully.
-asadmin&gt;</code></pre></div>
+[CN=das.cognicio.us-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
+Domain dasdomain created.
+Domain dasdomain admin port is 4848.
+Domain dasdomain admin user is &quot;admin&quot;.
+Command create-domain executed successfully.</code></pre></div>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">asadmin&gt; start-domain centraldomain
 Waiting for centraldomain to start ........
