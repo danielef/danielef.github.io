@@ -91,12 +91,12 @@ farm02# chown -R glassfish:glassfish glassfish4
 
 ### Config Domain Creation
 
-Is mandatory to create a domain for Glassfish in Admin as `glassfish` user
+Is mandatory to create a domain for Glassfish in Admin as `glassfish` user. **Remember your admin Username and Password**
 
 #### In Admin `das.cognicio.us`
 {% highlight text %}
 # cd /opt/glassfish4
-# su - glassfish
+# su glassfish
 $ bin/asadmin create-domain dasdomain
 Enter admin user name [Enter to accept default "admin" / no password]>admin
 Enter the admin password [Enter to accept default of no password]> 
@@ -121,81 +121,204 @@ Domain dasdomain admin user is "admin".
 Command create-domain executed successfully.
 {% endhighlight %}
 
+**Note** *Do not forget to verify `/opt/glassfish4/glassfish/domains/dasdomain/config/domain.xml` file for any ocurrence of `localhost` (replace it by your hostname, in this case, `das.cognicio.us`)*
+
+### DAS Domain First Start
+
+Our `das.cognicio.us` server is ready for its first start using `asadmin` as follow:
+
+#### In Admin `das.cognicio.us`
 {% highlight text %}
-asadmin> start-domain centraldomain
-Waiting for centraldomain to start ........
-Successfully started the domain : centraldomain
-domain  Location: /opt/glassfish4/glassfish/domains/centraldomain
-Log File: /opt/glassfish4/glassfish/domains/centraldomain/logs/server.log
+das$ bin/asadmin start-domain dasdomain
+Waiting for dasdomain to start ........
+Successfully started the domain : dasdomain
+domain  Location: /opt/glassfish4/glassfish/domains/dasdomain
+Log File: /opt/glassfish4/glassfish/domains/dasdomain/logs/server.log
 Admin Port: 4848
 Command start-domain executed successfully.
-asadmin>
 {% endhighlight %}
 
+To allow remote administration use `enable-secure-admin`
 {% highlight text %}
-asadmin> enable-secure-admin --port 4848
+das$ bin/asadmin enable-secure-admin
 Enter admin user name>  admin
 Enter admin password for user "admin"> 
 You must restart all running servers for the change in secure admin to take effect.
 Command enable-secure-admin executed successfully.
-asadmin>
 {% endhighlight %}
 
+### Admin Firewall Rules
+
+We need also configure a set of rules for firewall access.
+
+Port | Usage
+---- | -----
+4848 |  Glassfish Administration Console
+3820 |  IIOP
+3920 |  IIOP
+3700 |  IIOP
+
+Using `firewall-cmd` add permanent access in each port as follows
+
+#### In Admin `das.cognicio.us`
 {% highlight text %}
-central# semanage port -a -t http_port_t -p tcp 4848
-central# firewall-cmd --permanent --add-port=4848/tcp
-central# firewall-cmd --reload
+das$ su - root
+Password:
+das# firewall-cmd --permanent --add-port=4848/tcp
+das# firewall-cmd --permanent --add-port=3820/tcp
+das# firewall-cmd --permanent --add-port=3920/tcp
+das# firewall-cmd --permanent --add-port=3700/tcp
+das# firewall-cmd --reload
 {% endhighlight %}
 
+### Installation of Glassfish 4.1 in Farm Servers
+
+This task will be executed from `das.cognicio.us` server using `asadmin` utility.
+
+To install to `farm01.cognicio.us`
+
+#### In Admin `das.cognicio.us`
 {% highlight text %}
-node1# mkdir /opt/glassfish4
-node1# chown -R glassfish:glassfish /opt/glassfish4
+das$ bin/asadmin install-node-ssh farm01.cognicio.us
+Enter remote password for glassfish@farm01.cognicio.us>
 {% endhighlight %}
 
+And exactly to `farm02.cognicio.us`
+#### In Admin `das.cognicio.us`
 {% highlight text %}
-asadmin> install-node-ssh node1
-Enter remote password for glassfish@node1>
-Authenticating with password <concealed>
-Authenticating with password <concealed>
-Created installation zip /opt/glassfish4/glassfish9072453720586863332.zip
-Authenticating with password <concealed>
-Authenticating with password <concealed>
-Copying /opt/glassfish4/glassfish9072453720586863332.zip (107575068 bytes) to node1:/opt/glassfish4
-Installing glassfish9072453720586863332.zip into node1:/opt/glassfish4
-Authenticating with password <concealed>
-Removing node1:/opt/glassfish4/glassfish9072453720586863332.zip
-Fixing file permissions of all bin files under node1:/opt/glassfish4
-Fixing file permissions for nadmin file under node1:/opt/glassfish4/glassfish/lib
-Command install-node-ssh executed successfully.
-asadmin> 
-
-
-
-
-
- [glassfish@central glassfish4]$ bin/asadmin create-password-alias node1-alias
-Enter the alias password> 
-Enter the alias password again> 
-Enter admin user name>  admin
-Enter admin password for user "admin"> 
-Command create-password-alias executed successfully.
-[glassfish@central glassfish4]$ echo "AS_ADMIN_SSHPASSWORD=\${ALIAS=node1-alias}" >> node1.password
-[glassfish@central glassfish4]$ bin/asadmin  install-node-ssh --passwordfile node1.password node1
-Password is aliased. To obtain the real password, enter master password for exampledomain's key store>
-Authenticating with password <concealed>
-Authenticating with password <concealed>
-Created installation zip /opt/glassfish4/glassfish7254357664837807752.zip
-Authenticating with password <concealed>
-Authenticating with password <concealed>
-Copying /opt/glassfish4/glassfish7254357664837807752.zip (107575176 bytes) to node1:/opt/glassfish4
-Installing glassfish7254357664837807752.zip into node1:/opt/glassfish4
-Authenticating with password <concealed>
-Removing node1:/opt/glassfish4/glassfish7254357664837807752.zip
-Fixing file permissions of all bin files under node1:/opt/glassfish4
-Fixing file permissions for nadmin file under node1:/opt/glassfish4/glassfish/lib
-Command install-node-ssh executed successfully.
-[glassfish@central glassfish4]$ bin/asadmin create-node-ssh --passwordfile node1.password --nodehost node1 node1
-Enter admin user name>  admin
-Enter admin password for user "admin"> 
-Command create-node-ssh executed successfully.
+das$ bin/asadmin install-node-ssh farm02.cognicio.us
+Enter remote password for glassfish@farm01.cognicio.us>
 {% endhighlight %}
+
+### Nodes Creation
+
+Go to Glassfish Administration Console in `https://das.cognicio.us:4848/`, login using Username and Password specified in **Config Domain Creation**
+
+![login]({{ site.url }}/public/images/gf-cluster-01.png)
+
+In left sidebar, go to Nodes section
+
+![login]({{ site.url }}/public/images/gf-cluster-02.png)
+
+Create a new Node with `New` button with following parameters and values
+
+Parameter | Value
+---------- | ------
+Name | node01
+Type | SSH
+Node Host | farm01.cognicio.us
+Node Directory | *empty*
+Install Glassfish Server | unchecked
+Force | unchecked
+SSH Port | 22
+SSH User Name | ${user.name}
+SSH User Autentication | Password
+SSH User Password  | *somesecret*
+
+Click in `OK` button. 
+
+![login]({{ site.url }}/public/images/gf-cluster-03.png)
+
+Repeat this steps to create a second Node with following values
+
+Parameter | Value
+---------- | ------
+Name | node02
+Type | SSH
+Node Host | farm02.cognicio.us
+Node Directory | *empty*
+Install Glassfish Server | unchecked
+Force | unchecked
+SSH Port | 22
+SSH User Name | ${user.name}
+SSH User Autentication | Password
+SSH User Password  | *somesecret*
+
+In Node section you can see 3 nodes: one of type `CONFIG` and two of type `SSH` (`node01` and `node02`). SSH nodes are running in two remote servers `farm01.cognicio.us` and `farm02.cognicio.us`.
+
+![login]({{ site.url }}/public/images/gf-cluster-04.png)
+
+### Cluster and Instances Creation
+
+Go to Clusters section and add a new cluster with `New` button
+
+![login]({{ site.url }}/public/images/gf-cluster-05.png)
+
+Lets create this cluster with following values
+
+Parameter | Value
+---------- | ------
+Cluster Name | cluster01
+Configuration | default-config and Make a Copy of Selected Configuration
+Message Queue Cluster Config Type | Default: Embedded Conventional Cluster with Master Broker
+
+In the same screen, with `New` button, we create two instances using following values
+
+Parameter |  Row1 | Row2
+---------- | ------ | ------
+Select | unchecked | unchecked
+Instance Name | instance01 | instance02
+Weight | *empty* | *empty*
+Node | node01 | node02
+
+![login]({{ site.url }}/public/images/gf-cluster-06.png)
+
+Click in `OK` button and wait ...
+
+![login]({{ site.url }}/public/images/gf-cluster-08.png)
+
+If your screen looks like this, your cluster has been created successfully
+
+![login]({{ site.url }}/public/images/gf-cluster-09.png)
+
+Before to start the cluster, we must add some firewall rules in Farm servers `farm01.cognicio.us` and `farm02.cognicio.us`
+
+### Farm Firewall Rules
+
+In Glassfish Administration Console, go to `Configurations > cluster01-config > System Properties`
+
+![login]({{ site.url }}/public/images/gf-cluster-11.png)
+
+This table shows all ports used by `instance01` and `instance02`. Remember that this instances runs over Nodes `node01` and `node02` and each of this are installed in Farm servers `farm01.cognicio.us` and `farm02.cognicio.us`
+
+Therefore, using `firewall-cmd` add permanent access in each port as follows
+
+#### In Admin `farm01.cognicio.us`
+{% highlight text %}
+farm01# firewall-cmd --permanent --add-port=24848/tcp
+farm01# firewall-cmd --permanent --add-port=28080/tcp
+farm01# firewall-cmd --permanent --add-port=28181/tcp
+farm01# firewall-cmd --permanent --add-port=23700/tcp
+farm01# firewall-cmd --permanent --add-port=23820/tcp
+farm01# firewall-cmd --permanent --add-port=23920/tcp
+farm01# firewall-cmd --permanent --add-port=29009/tcp
+farm01# firewall-cmd --permanent --add-port=27676/tcp
+farm01# firewall-cmd --permanent --add-port=28686/tcp
+farm01# firewall-cmd --permanent --add-port=26666/tcp
+farm01# firewall-cmd --reload
+{% endhighlight %}
+
+#### In Admin `farm02.cognicio.us`
+{% highlight text %}
+farm02# firewall-cmd --permanent --add-port=24848/tcp
+farm02# firewall-cmd --permanent --add-port=28080/tcp
+farm02# firewall-cmd --permanent --add-port=28181/tcp
+farm02# firewall-cmd --permanent --add-port=23700/tcp
+farm02# firewall-cmd --permanent --add-port=23820/tcp
+farm02# firewall-cmd --permanent --add-port=23920/tcp
+farm02# firewall-cmd --permanent --add-port=29009/tcp
+farm02# firewall-cmd --permanent --add-port=27676/tcp
+farm02# firewall-cmd --permanent --add-port=28686/tcp
+farm02# firewall-cmd --permanent --add-port=26666/tcp
+farm02# firewall-cmd --reload
+{% endhighlight %}
+
+### Cluster Start
+
+In Glassfish Administration Console, go to `Cluster`, select `cluster01` and click in `Start Cluster`
+
+![login]({{ site.url }}/public/images/gf-cluster-12.png)
+
+Finally, if you can see all instance icons in green, congratulations! the cluster is ready
+
+![login]({{ site.url }}/public/images/gf-cluster-07.png)
