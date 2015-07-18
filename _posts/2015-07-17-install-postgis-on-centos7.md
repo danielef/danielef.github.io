@@ -27,6 +27,24 @@ Download and install latest RPM Repository file for Centos 7 as follow:
 After this, you can install Postgis 2.1.8 and PostgreSQL 9.4.4
 
 {% highlight bash %}
-# yum install postgresql94 postgis2_94
+# yum install postgresql94-server postgis2_94
+{% endhighlight %}
+
+### First Start
+
+Activate PortgreSQL to start automatically on boot
+
+{% highlight bash %}
+# systemctl enable postgresql-9.4
+{% endhighlight %}
+
+Initialize PostgreSQL database using following command
+{% highlight bash %}
+# /usr/pgsql-9.4/bin/postgresql94-setup initdb
+{% endhighlight %}
+
+Finally, start PostgreSQL
+{% highlight bash %}
+# systemctl start postgresql-9.4
 {% endhighlight %}
 
