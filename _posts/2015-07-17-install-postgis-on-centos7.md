@@ -7,7 +7,7 @@ title: Install Postgis 2.1 on Centos 7
 
 By default, Centos 7 includes Postgresql 9.2 and Postgis 2.0. To install a most recently version we must to add the PostgreSQL official RPM Repository to YUM system.
 
-**Note** *For avoid a version hell or dependency hell, uninstall your Postgis and PostgreSQL previously installed*
+**Note** *For avoid a dependency hell, uninstall your Postgis and PostgreSQL previously installed*
 
 {% highlight bash %}
 # yum erase postgresql-server postgis
