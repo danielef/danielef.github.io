@@ -492,6 +492,87 @@ farm02# firewall-cmd --reload</code></pre></div>
 
 <p><img src="/public/images/gf-cluster-07.png" alt="login"></p>
 
+<h3>HA with Apache2</h3>
+
+<p>In Balancer <code>ha.cognicio.us</code> install Apache HTTPD and Core Utils</p>
+
+<h4>In Admin <code>ha.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">ha# yum -y install httpd policycoreutils-python</code></pre></div>
+
+<p>Add security rules for 80 port using semanage and firewall-cmd</p>
+
+<h4>In Admin <code>ha.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">ha# semanage port -a -t http_port_t -p tcp 80
+ha# setsebool -P httpd_can_network_connect 1
+ha# firewall-cmd --permanent --add-port=80/tcp
+ha# firewall-cmd --reload</code></pre></div>
+
+<p>Start Apache HTTPD with systemctl</p>
+
+<h4>In Admin <code>ha.cognicio.us</code></h4>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">ha# systemctl start httpd</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;VirtualHost *:80&gt;
+        ProxyRequests Off
+    ProxyTimeout 10000
+        ProxyPreserveHost On
+        ProxyVia On
+        
+        ServerName cluster.cognicio.us
+
+        &lt;Proxy balancer://mycluster&gt;
+                # WebHead1
+                BalancerMember http://192.168.1.101:28080/
+                # WebHead2
+                BalancerMember http://192.168.1.102:28080/
+
+                # Security &quot;technically we aren&#39;t blocking
+                # anyone but this the place to make those
+                # chages
+                Order allow,deny
+                Deny from none
+                Allow from all
+
+                # Load Balancer Settings
+                # We will be configuring a simple Round
+                # Robin style load balancer.  This means
+                # that all webheads take an equal share of
+                # of the load.
+                # ProxySet lbmethod=byrequests
+            ProxySet lbmethod=bytraffic
+                ProxySet stickysession=JSESSIONID
+
+        &lt;/Proxy&gt;
+
+        # balancer-manager
+        # This tool is built into the mod_proxy_balancer
+        # module and will allow you to do some simple
+        # modifications to the balanced group via a gui
+        # web interface.
+        &lt;Location /balancer-manager&gt;
+                SetHandler balancer-manager
+
+                # I recommend locking this one down to your
+                # your office
+                Order deny,allow
+                Allow from all
+        &lt;/Location&gt;
+
+        # Point of Balance
+        # This setting will allow to explicitly name the
+        # the location in the site that we want to be
+        # balanced, in this example we will balance &quot;/&quot;
+        # or everything in the site.
+        
+        #ProxyPass /clusterjsp balancer://mycluster/clusterjsp stickysession=JSESSIONID
+    ProxyPass / balancer://mycluster/
+        ProxyPassReverse /  balancer://mycluster/
+        ProxyPassReverseCookieDomain balancer://mycluster/ http://cluster.cognicio.us   
+&lt;/VirtualHost&gt;</code></pre></div>
+
 </article>
 
 

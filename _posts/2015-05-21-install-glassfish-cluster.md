@@ -68,7 +68,7 @@ First, we proceed to Glassfish 4 installation only in Admin
 #### In Admin `das.cognicio.us`
 {% highlight text %}
 das# cd /opt
-das# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+das# wget http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip
 das# unzip glassfish-4.1.zip
 das# chown -R glassfish:glassfish glassfish4
 {% endhighlight %}
