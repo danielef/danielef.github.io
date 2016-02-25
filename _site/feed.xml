@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>It's simple. It's easy to use. It's a Jekyll theme.</description>
     <language>en-us</language>
-    <pubDate>Wed, 24 Feb 2016 19:00:19 -0600</pubDate>
-    <lastBuildDate>Wed, 24 Feb 2016 19:00:19 -0600</lastBuildDate>
+    <pubDate>Wed, 24 Feb 2016 19:55:58 -0600</pubDate>
+    <lastBuildDate>Wed, 24 Feb 2016 19:55:58 -0600</lastBuildDate>
 
     
       <item>
@@ -15,11 +15,11 @@
         <link>/install-epel-repo-centos7</link>
         <pubDate>Wed, 24 Feb 2016 00:00:00 -0600</pubDate>
         <author>Aigars Dzerviniks</author>
-        <description>&lt;h3&gt;Intro&lt;/h3&gt;
+        <description>&lt;h3 id=&quot;intro&quot;&gt;Intro&lt;/h3&gt;
 
 &lt;p&gt;The EPEL repository provides useful software packages that are not included in the official CentOS or Red Hat Enterprise Linux repositories.&lt;/p&gt;
 
-&lt;h3&gt;CentOS Extras repository&lt;/h3&gt;
+&lt;h3 id=&quot;centos-extras-repository&quot;&gt;CentOS Extras repository&lt;/h3&gt;
 
 &lt;p&gt;To install the EPEL package, run the following command:&lt;/p&gt;
 
@@ -29,6 +29,7 @@
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# sudo rpm -Uvh epel-release-7*.rpm&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 </description>
       </item>
     
@@ -37,7 +38,7 @@
         <link>/install-postgis-on-centos7</link>
         <pubDate>Fri, 17 Jul 2015 00:00:00 -0500</pubDate>
         <author>Aigars Dzerviniks</author>
-        <description>&lt;h3&gt;Adding pgdg94 Repository&lt;/h3&gt;
+        <description>&lt;h3 id=&quot;adding-pgdg94-repository&quot;&gt;Adding pgdg94 Repository&lt;/h3&gt;
 
 &lt;p&gt;By default, Centos 7 includes Postgresql 9.2 and Postgis 2.0. To install a most recently version we must to add the PostgreSQL official RPM Repository to YUM system.&lt;/p&gt;
 
@@ -46,19 +47,19 @@
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum erase postgresql-server postgis&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# yum autoremove&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Download and install latest RPM Repository file for Centos 7 as follow: &lt;/p&gt;
+&lt;p&gt;Download and install latest RPM Repository file for Centos 7 as follow:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# wget http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# rpm -ivh pgdg-centos94-9.4-1.noarch.rpm &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Installing&lt;/h3&gt;
+&lt;h3 id=&quot;installing&quot;&gt;Installing&lt;/h3&gt;
 
 &lt;p&gt;After this, you can install Postgis 2.1.8 and PostgreSQL 9.4.4&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum install postgresql94-server postgis2_94&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;First Start&lt;/h3&gt;
+&lt;h3 id=&quot;first-start&quot;&gt;First Start&lt;/h3&gt;
 
 &lt;p&gt;Activate PortgreSQL to start automatically on boot&lt;/p&gt;
 
@@ -71,6 +72,7 @@
 &lt;p&gt;Finally, start PostgreSQL&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# systemctl start postgresql-9.4&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 </description>
       </item>
     
@@ -79,36 +81,36 @@
         <link>/install-hamachi-on-centos7</link>
         <pubDate>Wed, 03 Jun 2015 00:00:00 -0500</pubDate>
         <author>Aigars Dzerviniks</author>
-        <description>&lt;h3&gt;Downloading and Install Latest Hamachi&lt;/h3&gt;
+        <description>&lt;h3 id=&quot;downloading-and-install-latest-hamachi&quot;&gt;Downloading and Install Latest Hamachi&lt;/h3&gt;
 
 &lt;p&gt;Download latest Logmein Hamachi release from its official download page or use following command to download from shell&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# wget https://secure.logmein.com/labs/logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;code&gt;logmein-hamachi&lt;/code&gt; package depends on &lt;code&gt;redhat-lsb-core module&lt;/code&gt;, install them using &lt;code&gt;yum&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;logmein-hamachi&lt;/code&gt; package depends on &lt;code class=&quot;highlighter-rouge&quot;&gt;redhat-lsb-core module&lt;/code&gt;, install them using &lt;code class=&quot;highlighter-rouge&quot;&gt;yum&lt;/code&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# yum install redhat-lsb-core logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;If you type &lt;code&gt;ip addr&lt;/code&gt; in shell, you can see a new interface called &lt;code&gt;ham0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If you type &lt;code class=&quot;highlighter-rouge&quot;&gt;ip addr&lt;/code&gt; in shell, you can see a new interface called &lt;code class=&quot;highlighter-rouge&quot;&gt;ham0&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/ham0.png&quot; alt=&quot;ham0 Interface&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/ham0.png&quot; alt=&quot;ham0 Interface&quot; /&gt;&lt;/p&gt;
 
-&lt;h3&gt;Joining to Hamachi Network&lt;/h3&gt;
+&lt;h3 id=&quot;joining-to-hamachi-network&quot;&gt;Joining to Hamachi Network&lt;/h3&gt;
 
 &lt;p&gt;In LogmeIn page, in Networks section, go to My Networks and copy your network ID&lt;/p&gt;
 
-&lt;p&gt;In your host, use  &lt;code&gt;hamachi&lt;/code&gt; command for request access to your network as following&lt;/p&gt;
+&lt;p&gt;In your host, use  &lt;code class=&quot;highlighter-rouge&quot;&gt;hamachi&lt;/code&gt; command for request access to your network as following&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# hamachi login
 Logging in .......... ok
 # hamachi do-join 000-000-000
 Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;&lt;code&gt;000-000-000&lt;/code&gt; is your network ID&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;000-000-000&lt;/code&gt; is your network ID&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Finally go to LogmeIn dashboard for approve host access, then hamachi assigns to &lt;code&gt;ham0&lt;/code&gt; a valid IP in your Hamachi Network&lt;/p&gt;
+&lt;p&gt;Finally go to LogmeIn dashboard for approve host access, then hamachi assigns to &lt;code class=&quot;highlighter-rouge&quot;&gt;ham0&lt;/code&gt; a valid IP in your Hamachi Network&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/ham1.png&quot; alt=&quot;ham0 Ready&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/ham1.png&quot; alt=&quot;ham0 Ready&quot; /&gt;&lt;/p&gt;
 </description>
       </item>
     
@@ -117,39 +119,42 @@ Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/p
         <link>/install-glassfish-cluster</link>
         <pubDate>Thu, 21 May 2015 00:00:00 -0500</pubDate>
         <author>Aigars Dzerviniks</author>
-        <description>&lt;h3&gt;Network Scenario&lt;/h3&gt;
+        <description>&lt;h3 id=&quot;network-scenario&quot;&gt;Network Scenario&lt;/h3&gt;
 
 &lt;p&gt;We have three servers in two different physical locations&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;th&gt;Network 1&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Balancer&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Admin&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Farm&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Farm&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+      &lt;th&gt;Network 1&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Balancer&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ha.cognicio.us&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Admin&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Farm&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Farm&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;Admin and Farm servers have private IPs and will access to each others via Private Network&lt;/p&gt;
 
-&lt;h3&gt;SELinux Configuration&lt;/h3&gt;
+&lt;h3 id=&quot;selinux-configuration&quot;&gt;SELinux Configuration&lt;/h3&gt;
 
-&lt;p&gt;Is important disable SELinux in Admin and Farm servers in &lt;code&gt;/etc/selinux/config&lt;/code&gt; (You will need to reboot your systems).&lt;/p&gt;
+&lt;p&gt;Is important disable SELinux in Admin and Farm servers in &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/selinux/config&lt;/code&gt; (You will need to reboot your systems).&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# This file controls the state of SELinux on the system.&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# SELINUX= can take one of these three values:&lt;/span&gt;
@@ -163,53 +168,53 @@ Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/p
 &lt;span class=&quot;c&quot;&gt;#     mls - Multi Level Security protection.&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;SELINUXTYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;targeted&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Admin and Farm servers need to &lt;a href=&quot;/install-java8-on-centos7/&quot;&gt;Install of Java 8 on Centos 7&lt;/a&gt;, also is mandatory create an user &lt;code&gt;glassfish&lt;/code&gt; in each of this servers, passwords can differ (please!)&lt;/p&gt;
+&lt;p&gt;Admin and Farm servers need to &lt;a href=&quot;/install-java8-on-centos7/&quot;&gt;Install of Java 8 on Centos 7&lt;/a&gt;, also is mandatory create an user &lt;code class=&quot;highlighter-rouge&quot;&gt;glassfish&lt;/code&gt; in each of this servers, passwords can differ (please!)&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-dascognicious&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# useradd glassfish
 das# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;In Farm &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-farm-farm01cognicious&quot;&gt;In Farm &lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# useradd glassfish
 farm01# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;In Farm &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-farm-farm02cognicious&quot;&gt;In Farm &lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# useradd glassfish
 farm02# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Glassfish 4 Download and Directory Structure&lt;/h3&gt;
+&lt;h3 id=&quot;glassfish-4-download-and-directory-structure&quot;&gt;Glassfish 4 Download and Directory Structure&lt;/h3&gt;
 
 &lt;p&gt;First, we proceed to Glassfish 4 installation only in Admin&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-dascognicious-1&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# cd /opt
 das# wget http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip
 das# unzip glassfish-4.1.zip
 das# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure &lt;/p&gt;
+&lt;p&gt;In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure&lt;/p&gt;
 
-&lt;h4&gt;In Farm &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-farm-farm01cognicious-1&quot;&gt;In Farm &lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# cd /opt
 farm01# mkdir glassfish4
 farm01# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;In Farm &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-farm-farm02cognicious-1&quot;&gt;In Farm &lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# cd /opt
 farm02# mkdir glassfish4
 farm02# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Config Domain Creation&lt;/h3&gt;
+&lt;h3 id=&quot;config-domain-creation&quot;&gt;Config Domain Creation&lt;/h3&gt;
 
-&lt;p&gt;Is mandatory to create a domain for Glassfish in Admin as &lt;code&gt;glassfish&lt;/code&gt; user. &lt;strong&gt;Remember your admin Username and Password&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Is mandatory to create a domain for Glassfish in Admin as &lt;code class=&quot;highlighter-rouge&quot;&gt;glassfish&lt;/code&gt; user. &lt;strong&gt;Remember your admin Username and Password&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-dascognicious-2&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /opt/glassfish4
 # su glassfish
@@ -236,13 +241,13 @@ Domain dasdomain admin port is 4848.
 Domain dasdomain admin user is &quot;admin&quot;.
 Command create-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; &lt;em&gt;Do not forget to verify &lt;code&gt;/opt/glassfish4/glassfish/domains/dasdomain/config/domain.xml&lt;/code&gt; file for any ocurrence of &lt;code&gt;localhost&lt;/code&gt; (replace it by your hostname, in this case, &lt;code&gt;das.cognicio.us&lt;/code&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; &lt;em&gt;Do not forget to verify &lt;code class=&quot;highlighter-rouge&quot;&gt;/opt/glassfish4/glassfish/domains/dasdomain/config/domain.xml&lt;/code&gt; file for any ocurrence of &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt; (replace it by your hostname, in this case, &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;)&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;DAS Domain First Start&lt;/h3&gt;
+&lt;h3 id=&quot;das-domain-first-start&quot;&gt;DAS Domain First Start&lt;/h3&gt;
 
-&lt;p&gt;Our &lt;code&gt;das.cognicio.us&lt;/code&gt; server is ready for its first start using &lt;code&gt;asadmin&lt;/code&gt; as follow:&lt;/p&gt;
+&lt;p&gt;Our &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt; server is ready for its first start using &lt;code class=&quot;highlighter-rouge&quot;&gt;asadmin&lt;/code&gt; as follow:&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-dascognicious-3&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin start-domain dasdomain
 Waiting for dasdomain to start ........
@@ -252,7 +257,7 @@ Log File: /opt/glassfish4/glassfish/domains/dasdomain/logs/server.log
 Admin Port: 4848
 Command start-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;To allow remote administration use &lt;code&gt;enable-secure-admin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To allow remote administration use &lt;code class=&quot;highlighter-rouge&quot;&gt;enable-secure-admin&lt;/code&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin enable-secure-admin
 Enter admin user name&amp;gt;  admin
@@ -260,37 +265,40 @@ Enter admin password for user &quot;admin&quot;&amp;gt;
 You must restart all running servers for the change in secure admin to take effect.
 Command enable-secure-admin executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Admin Firewall Rules&lt;/h3&gt;
+&lt;h3 id=&quot;admin-firewall-rules&quot;&gt;Admin Firewall Rules&lt;/h3&gt;
 
 &lt;p&gt;We need also configure a set of rules for firewall access.&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Port&lt;/th&gt;
-&lt;th&gt;Usage&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;4848&lt;/td&gt;
-&lt;td&gt;Glassfish Administration Console&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;3820&lt;/td&gt;
-&lt;td&gt;IIOP&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;3920&lt;/td&gt;
-&lt;td&gt;IIOP&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;3700&lt;/td&gt;
-&lt;td&gt;IIOP&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Port&lt;/th&gt;
+      &lt;th&gt;Usage&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4848&lt;/td&gt;
+      &lt;td&gt;Glassfish Administration Console&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3820&lt;/td&gt;
+      &lt;td&gt;IIOP&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3920&lt;/td&gt;
+      &lt;td&gt;IIOP&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3700&lt;/td&gt;
+      &lt;td&gt;IIOP&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;Using &lt;code&gt;firewall-cmd&lt;/code&gt; add permanent access in each port as follows&lt;/p&gt;
+&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;firewall-cmd&lt;/code&gt; add permanent access in each port as follows&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-dascognicious-4&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ su - root
 Password:
@@ -300,224 +308,235 @@ das# firewall-cmd --permanent --add-port=3920/tcp
 das# firewall-cmd --permanent --add-port=3700/tcp
 das# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Installation of Glassfish 4.1 in Farm Servers&lt;/h3&gt;
+&lt;h3 id=&quot;installation-of-glassfish-41-in-farm-servers&quot;&gt;Installation of Glassfish 4.1 in Farm Servers&lt;/h3&gt;
 
-&lt;p&gt;This task will be executed from &lt;code&gt;das.cognicio.us&lt;/code&gt; server using &lt;code&gt;asadmin&lt;/code&gt; utility.&lt;/p&gt;
+&lt;p&gt;This task will be executed from &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt; server using &lt;code class=&quot;highlighter-rouge&quot;&gt;asadmin&lt;/code&gt; utility.&lt;/p&gt;
 
-&lt;p&gt;To install to &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To install to &lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-dascognicious-5&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin install-node-ssh farm01.cognicio.us
 Enter remote password for glassfish@farm01.cognicio.us&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;And exactly to &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;And exactly to &lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;
+#### In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;das.cognicio.us&lt;/code&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin install-node-ssh farm02.cognicio.us
 Enter remote password for glassfish@farm01.cognicio.us&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Nodes Creation&lt;/h3&gt;
+&lt;h3 id=&quot;nodes-creation&quot;&gt;Nodes Creation&lt;/h3&gt;
 
-&lt;p&gt;Go to Glassfish Administration Console in &lt;code&gt;https://das.cognicio.us:4848/&lt;/code&gt;, login using Username and Password specified in &lt;strong&gt;Config Domain Creation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Go to Glassfish Administration Console in &lt;code class=&quot;highlighter-rouge&quot;&gt;https://das.cognicio.us:4848/&lt;/code&gt;, login using Username and Password specified in &lt;strong&gt;Config Domain Creation&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-01.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-01.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In left sidebar, go to Nodes section&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-02.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-02.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Create a new Node with &lt;code&gt;New&lt;/code&gt; button with following parameters and values&lt;/p&gt;
+&lt;p&gt;Create a new Node with &lt;code class=&quot;highlighter-rouge&quot;&gt;New&lt;/code&gt; button with following parameters and values&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Parameter&lt;/th&gt;
-&lt;th&gt;Value&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Name&lt;/td&gt;
-&lt;td&gt;node01&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Type&lt;/td&gt;
-&lt;td&gt;SSH&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Node Host&lt;/td&gt;
-&lt;td&gt;farm01.cognicio.us&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Node Directory&lt;/td&gt;
-&lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Install Glassfish Server&lt;/td&gt;
-&lt;td&gt;unchecked&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Force&lt;/td&gt;
-&lt;td&gt;unchecked&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH Port&lt;/td&gt;
-&lt;td&gt;22&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH User Name&lt;/td&gt;
-&lt;td&gt;${user.name}&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH User Autentication&lt;/td&gt;
-&lt;td&gt;Password&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH User Password&lt;/td&gt;
-&lt;td&gt;&lt;em&gt;somesecret&lt;/em&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parameter&lt;/th&gt;
+      &lt;th&gt;Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Name&lt;/td&gt;
+      &lt;td&gt;node01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Type&lt;/td&gt;
+      &lt;td&gt;SSH&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Node Host&lt;/td&gt;
+      &lt;td&gt;farm01.cognicio.us&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Node Directory&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Install Glassfish Server&lt;/td&gt;
+      &lt;td&gt;unchecked&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Force&lt;/td&gt;
+      &lt;td&gt;unchecked&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH Port&lt;/td&gt;
+      &lt;td&gt;22&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH User Name&lt;/td&gt;
+      &lt;td&gt;${user.name}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH User Autentication&lt;/td&gt;
+      &lt;td&gt;Password&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH User Password&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;somesecret&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;Click in &lt;code&gt;OK&lt;/code&gt; button. &lt;/p&gt;
+&lt;p&gt;Click in &lt;code class=&quot;highlighter-rouge&quot;&gt;OK&lt;/code&gt; button.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-03.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-03.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Repeat this steps to create a second Node with following values&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Parameter&lt;/th&gt;
-&lt;th&gt;Value&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Name&lt;/td&gt;
-&lt;td&gt;node02&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Type&lt;/td&gt;
-&lt;td&gt;SSH&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Node Host&lt;/td&gt;
-&lt;td&gt;farm02.cognicio.us&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Node Directory&lt;/td&gt;
-&lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Install Glassfish Server&lt;/td&gt;
-&lt;td&gt;unchecked&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Force&lt;/td&gt;
-&lt;td&gt;unchecked&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH Port&lt;/td&gt;
-&lt;td&gt;22&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH User Name&lt;/td&gt;
-&lt;td&gt;${user.name}&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH User Autentication&lt;/td&gt;
-&lt;td&gt;Password&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SSH User Password&lt;/td&gt;
-&lt;td&gt;&lt;em&gt;somesecret&lt;/em&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parameter&lt;/th&gt;
+      &lt;th&gt;Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Name&lt;/td&gt;
+      &lt;td&gt;node02&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Type&lt;/td&gt;
+      &lt;td&gt;SSH&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Node Host&lt;/td&gt;
+      &lt;td&gt;farm02.cognicio.us&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Node Directory&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Install Glassfish Server&lt;/td&gt;
+      &lt;td&gt;unchecked&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Force&lt;/td&gt;
+      &lt;td&gt;unchecked&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH Port&lt;/td&gt;
+      &lt;td&gt;22&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH User Name&lt;/td&gt;
+      &lt;td&gt;${user.name}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH User Autentication&lt;/td&gt;
+      &lt;td&gt;Password&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSH User Password&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;somesecret&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;In Node section you can see 3 nodes: one of type &lt;code&gt;CONFIG&lt;/code&gt; and two of type &lt;code&gt;SSH&lt;/code&gt; (&lt;code&gt;node01&lt;/code&gt; and &lt;code&gt;node02&lt;/code&gt;). SSH nodes are running in two remote servers &lt;code&gt;farm01.cognicio.us&lt;/code&gt; and &lt;code&gt;farm02.cognicio.us&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In Node section you can see 3 nodes: one of type &lt;code class=&quot;highlighter-rouge&quot;&gt;CONFIG&lt;/code&gt; and two of type &lt;code class=&quot;highlighter-rouge&quot;&gt;SSH&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;node01&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;node02&lt;/code&gt;). SSH nodes are running in two remote servers &lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-04.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-04.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
-&lt;h3&gt;Cluster and Instances Creation&lt;/h3&gt;
+&lt;h3 id=&quot;cluster-and-instances-creation&quot;&gt;Cluster and Instances Creation&lt;/h3&gt;
 
-&lt;p&gt;Go to Clusters section and add a new cluster with &lt;code&gt;New&lt;/code&gt; button&lt;/p&gt;
+&lt;p&gt;Go to Clusters section and add a new cluster with &lt;code class=&quot;highlighter-rouge&quot;&gt;New&lt;/code&gt; button&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-05.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-05.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Lets create this cluster with following values&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Parameter&lt;/th&gt;
-&lt;th&gt;Value&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Cluster Name&lt;/td&gt;
-&lt;td&gt;cluster01&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Configuration&lt;/td&gt;
-&lt;td&gt;default-config and Make a Copy of Selected Configuration&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Message Queue Cluster Config Type&lt;/td&gt;
-&lt;td&gt;Default: Embedded Conventional Cluster with Master Broker&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parameter&lt;/th&gt;
+      &lt;th&gt;Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Cluster Name&lt;/td&gt;
+      &lt;td&gt;cluster01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Configuration&lt;/td&gt;
+      &lt;td&gt;default-config and Make a Copy of Selected Configuration&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Message Queue Cluster Config Type&lt;/td&gt;
+      &lt;td&gt;Default: Embedded Conventional Cluster with Master Broker&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;In the same screen, with &lt;code&gt;New&lt;/code&gt; button, we create two instances using following values&lt;/p&gt;
+&lt;p&gt;In the same screen, with &lt;code class=&quot;highlighter-rouge&quot;&gt;New&lt;/code&gt; button, we create two instances using following values&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Parameter&lt;/th&gt;
-&lt;th&gt;Row1&lt;/th&gt;
-&lt;th&gt;Row2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Select&lt;/td&gt;
-&lt;td&gt;unchecked&lt;/td&gt;
-&lt;td&gt;unchecked&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Instance Name&lt;/td&gt;
-&lt;td&gt;instance01&lt;/td&gt;
-&lt;td&gt;instance02&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Weight&lt;/td&gt;
-&lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
-&lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Node&lt;/td&gt;
-&lt;td&gt;node01&lt;/td&gt;
-&lt;td&gt;node02&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parameter&lt;/th&gt;
+      &lt;th&gt;Row1&lt;/th&gt;
+      &lt;th&gt;Row2&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Select&lt;/td&gt;
+      &lt;td&gt;unchecked&lt;/td&gt;
+      &lt;td&gt;unchecked&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Instance Name&lt;/td&gt;
+      &lt;td&gt;instance01&lt;/td&gt;
+      &lt;td&gt;instance02&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Weight&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;empty&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Node&lt;/td&gt;
+      &lt;td&gt;node01&lt;/td&gt;
+      &lt;td&gt;node02&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-06.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-06.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Click in &lt;code&gt;OK&lt;/code&gt; button and wait ...&lt;/p&gt;
+&lt;p&gt;Click in &lt;code class=&quot;highlighter-rouge&quot;&gt;OK&lt;/code&gt; button and wait …&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-08.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-08.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If your screen looks like this, your cluster has been created successfully&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-09.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-09.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Before to start the cluster, we must add some firewall rules in Farm servers &lt;code&gt;farm01.cognicio.us&lt;/code&gt; and &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Before to start the cluster, we must add some firewall rules in Farm servers &lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;&lt;/p&gt;
 
-&lt;h3&gt;Farm Firewall Rules&lt;/h3&gt;
+&lt;h3 id=&quot;farm-firewall-rules&quot;&gt;Farm Firewall Rules&lt;/h3&gt;
 
-&lt;p&gt;In Glassfish Administration Console, go to &lt;code&gt;Configurations &amp;gt; cluster01-config &amp;gt; System Properties&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In Glassfish Administration Console, go to &lt;code class=&quot;highlighter-rouge&quot;&gt;Configurations &amp;gt; cluster01-config &amp;gt; System Properties&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-11.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-11.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This table shows all ports used by &lt;code&gt;instance01&lt;/code&gt; and &lt;code&gt;instance02&lt;/code&gt;. Remember that this instances runs over Nodes &lt;code&gt;node01&lt;/code&gt; and &lt;code&gt;node02&lt;/code&gt; and each of this are installed in Farm servers &lt;code&gt;farm01.cognicio.us&lt;/code&gt; and &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This table shows all ports used by &lt;code class=&quot;highlighter-rouge&quot;&gt;instance01&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;instance02&lt;/code&gt;. Remember that this instances runs over Nodes &lt;code class=&quot;highlighter-rouge&quot;&gt;node01&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;node02&lt;/code&gt; and each of this are installed in Farm servers &lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Therefore, using &lt;code&gt;firewall-cmd&lt;/code&gt; add permanent access in each port as follows&lt;/p&gt;
+&lt;p&gt;Therefore, using &lt;code class=&quot;highlighter-rouge&quot;&gt;firewall-cmd&lt;/code&gt; add permanent access in each port as follows&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-farm01cognicious&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# firewall-cmd --permanent --add-port=24848/tcp
 farm01# firewall-cmd --permanent --add-port=28080/tcp
@@ -531,7 +550,7 @@ farm01# firewall-cmd --permanent --add-port=28686/tcp
 farm01# firewall-cmd --permanent --add-port=26666/tcp
 farm01# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-farm02cognicious&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# firewall-cmd --permanent --add-port=24848/tcp
 farm02# firewall-cmd --permanent --add-port=28080/tcp
@@ -545,27 +564,27 @@ farm02# firewall-cmd --permanent --add-port=28686/tcp
 farm02# firewall-cmd --permanent --add-port=26666/tcp
 farm02# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Cluster Start&lt;/h3&gt;
+&lt;h3 id=&quot;cluster-start&quot;&gt;Cluster Start&lt;/h3&gt;
 
-&lt;p&gt;In Glassfish Administration Console, go to &lt;code&gt;Cluster&lt;/code&gt;, select &lt;code&gt;cluster01&lt;/code&gt; and click in &lt;code&gt;Start Cluster&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In Glassfish Administration Console, go to &lt;code class=&quot;highlighter-rouge&quot;&gt;Cluster&lt;/code&gt;, select &lt;code class=&quot;highlighter-rouge&quot;&gt;cluster01&lt;/code&gt; and click in &lt;code class=&quot;highlighter-rouge&quot;&gt;Start Cluster&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-12.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-12.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, if you can see all instance icons in green, congratulations! the cluster is ready&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-07.png&quot; alt=&quot;login&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/public/images/gf-cluster-07.png&quot; alt=&quot;login&quot; /&gt;&lt;/p&gt;
 
-&lt;h3&gt;HA with Apache2&lt;/h3&gt;
+&lt;h3 id=&quot;ha-with-apache2&quot;&gt;HA with Apache2&lt;/h3&gt;
 
-&lt;p&gt;In Balancer &lt;code&gt;ha.cognicio.us&lt;/code&gt; install Apache HTTPD and Core Utils&lt;/p&gt;
+&lt;p&gt;In Balancer &lt;code class=&quot;highlighter-rouge&quot;&gt;ha.cognicio.us&lt;/code&gt; install Apache HTTPD and Core Utils&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-hacognicious&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# yum -y install httpd policycoreutils-python&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Add security rules for 80 port using semanage and firewall-cmd&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-hacognicious-1&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# semanage port -a -t http_port_t -p tcp 80
 ha# setsebool -P httpd_can_network_connect 1
@@ -574,15 +593,15 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Start Apache HTTPD with systemctl&lt;/p&gt;
 
-&lt;h4&gt;In Admin &lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;in-admin-hacognicious-2&quot;&gt;In Admin &lt;code class=&quot;highlighter-rouge&quot;&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# systemctl start httpd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;VirtualHost *:80&amp;gt;
         ProxyRequests Off
-    ProxyTimeout 10000
-        ProxyPreserveHost On
-        ProxyVia On
+	ProxyTimeout 10000
+      	ProxyPreserveHost On
+      	ProxyVia On
         
         ServerName cluster.cognicio.us
 
@@ -605,7 +624,7 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
                 # that all webheads take an equal share of
                 # of the load.
                 # ProxySet lbmethod=byrequests
-            ProxySet lbmethod=bytraffic
+	        ProxySet lbmethod=bytraffic
                 ProxySet stickysession=JSESSIONID
 
         &amp;lt;/Proxy&amp;gt;
@@ -631,9 +650,9 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         # or everything in the site.
         
         #ProxyPass /clusterjsp balancer://mycluster/clusterjsp stickysession=JSESSIONID
-    ProxyPass / balancer://mycluster/
+	ProxyPass / balancer://mycluster/
         ProxyPassReverse /  balancer://mycluster/
-        ProxyPassReverseCookieDomain balancer://mycluster/ http://cluster.cognicio.us   
+        ProxyPassReverseCookieDomain balancer://mycluster/ http://cluster.cognicio.us	
 &amp;lt;/VirtualHost&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
       </item>
@@ -643,7 +662,7 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         <link>/install-java8-on-centos7</link>
         <pubDate>Tue, 19 May 2015 00:00:00 -0500</pubDate>
         <author>Aigars Dzerviniks</author>
-        <description>&lt;h3&gt;Downloading Latest Java Archive&lt;/h3&gt;
+        <description>&lt;h3 id=&quot;downloading-latest-java-archive&quot;&gt;Downloading Latest Java Archive&lt;/h3&gt;
 
 &lt;p&gt;Download latest Java SE Development Kit 8 release from its official download page or use following commands to download from shell&lt;/p&gt;
 
@@ -661,16 +680,16 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum -y install wget&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Configuring Environment Variables&lt;/h3&gt;
+&lt;h3 id=&quot;configuring-environment-variables&quot;&gt;Configuring Environment Variables&lt;/h3&gt;
 
-&lt;p&gt;Most of Java based application’s uses environment variables to work. CentOS provides of &lt;code&gt;/etc/profile.d/&lt;/code&gt; directory for customizing environment variables per application&lt;/p&gt;
+&lt;p&gt;Most of Java based application’s uses environment variables to work. CentOS provides of &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/profile.d/&lt;/code&gt; directory for customizing environment variables per application&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# echo &quot;export JAVA_HOME=/opt/jdk1.8.0_45/&quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# echo &quot;export JRE_HOME=/opt/jdk1.8.0_45/jre/&quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# echo &quot;export PATH=\$PATH:\$JAVA_HOME/bin/:\$JRE_HOME/bin/&quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# source /etc/profile.d/java.sh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3&gt;Install Java with Alternatives&lt;/h3&gt;
+&lt;h3 id=&quot;install-java-with-alternatives&quot;&gt;Install Java with Alternatives&lt;/h3&gt;
 
 &lt;p&gt;After setting Environment Variables use Alternatives to install Java&lt;/p&gt;
 
@@ -717,10 +736,13 @@ Enter to keep the current selection[+], or &lt;span class=&quot;nb&quot;&gt;type
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;foo&#39;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
       </item>
     
       <item>
@@ -733,41 +755,44 @@ Enter to keep the current selection[+], or &lt;span class=&quot;nb&quot;&gt;type
 &lt;p&gt;Nulla sit amet nulla non odio sodales mollis elementum sed sem. Aenean et laoreet enim. Curabitur vulputate, mi rutrum commodo condimentum, enim nunc feugiat magna, vel rutrum sapien ante nec ante. Donec nec nibh placerat, molestie felis ac, vulputate arcu. Donec condimentum pellentesque nibh vel tincidunt. Fusce sem ipsum, varius at laoreet vitae, accumsan sed nisl. Nunc eget viverra diam. Aliquam pulvinar, enim id commodo tincidunt, risus lectus pharetra lacus, et semper enim ligula ut mauris. Sed vitae sollicitudin ante. In sollicitudin placerat dui et sagittis.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas leo id tortor feugiat, sit amet cursus diam mollis. Nunc sit amet tellus est. Nunc lacus nisl, gravida ut aliquam vel, molestie eget odio. Nulla facilisi. Ut sed libero pharetra nunc volutpat hendrerit. Mauris eget mi adipiscing, congue tellus ut, scelerisque eros. Phasellus ullamcorper dictum tellus nec pretium.&lt;/p&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas leo id tortor feugiat, sit amet cursus diam mollis. Nunc sit amet tellus est. Nunc lacus nisl, gravida ut aliquam vel, molestie eget odio. Nulla facilisi. Ut sed libero pharetra nunc volutpat hendrerit. Mauris eget mi adipiscing, congue tellus ut, scelerisque eros. Phasellus ullamcorper dictum tellus nec pretium.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Integer molestie orci ante, nec dictum metus aliquam ut. Donec id tristique enim. Quisque tellus est, dignissim ut justo ac, volutpat fringilla mi. Duis ultricies nec sapien vitae blandit. &lt;strong&gt;Suspendisse sed est mi&lt;/strong&gt;. Mauris varius sapien vel nulla accumsan, id tincidunt ipsum ultrices. Sed eget magna mauris. Etiam porttitor lacus ullamcorper lacus tincidunt aliquam. Sed feugiat congue fringilla. Nunc velit diam, vulputate sed metus vitae, iaculis tempor arcu. Proin consectetur a erat in dignissim.&lt;/p&gt;
 
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Tables&lt;/th&gt;
-&lt;th style=&quot;text-align: center&quot;&gt;Are&lt;/th&gt;
-&lt;th style=&quot;text-align: right&quot;&gt;Cool&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;col 3 is&lt;/td&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;right-aligned&lt;/td&gt;
-&lt;td style=&quot;text-align: right&quot;&gt;$1600&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;col 2 is&lt;/td&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;centered&lt;/td&gt;
-&lt;td style=&quot;text-align: right&quot;&gt;$12&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;zebra stripes&lt;/td&gt;
-&lt;td style=&quot;text-align: center&quot;&gt;are neat&lt;/td&gt;
-&lt;td style=&quot;text-align: right&quot;&gt;$1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tables&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Are&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Cool&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;col 3 is&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;right-aligned&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$1600&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;col 2 is&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;centered&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;zebra stripes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;are neat&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;Pellentesque adipiscing mollis adipiscing.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Nulla sit amet nulla non odio sodales mollis elementum sed sem.&lt;/li&gt;
-&lt;li&gt;Donec id tristique enim. Quisque tellus est, dignissim ut justo ac, volutpat fringilla mi.&lt;/li&gt;
-&lt;li&gt;Nam luctus erat dolor, non viverra nulla varius at.&lt;/li&gt;
+  &lt;li&gt;Nulla sit amet nulla non odio sodales mollis elementum sed sem.&lt;/li&gt;
+  &lt;li&gt;Donec id tristique enim. Quisque tellus est, dignissim ut justo ac, volutpat fringilla mi.&lt;/li&gt;
+  &lt;li&gt;Nam luctus erat dolor, non viverra nulla varius at.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Curabitur nec ullamcorper dui, blandit aliquet ipsum. Integer suscipit odio quis eros fermentum auctor. Sed tincidunt quam eleifend, egestas erat vulputate, tincidunt metus. Maecenas gravida sodales mi nec posuere. Cras vel nisi condimentum, hendrerit lacus sed, scelerisque ipsum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc convallis vestibulum erat, quis porta tellus. &lt;em&gt;In lorem erat, sollicitudin varius posuere id, molestie ac eros&lt;/em&gt;. Fusce luctus tellus vitae vulputate venenatis. Sed scelerisque bibendum interdum. Sed pretium commodo ultrices. Fusce luctus quam id porttitor vulputate. Integer ornare consectetur diam eget rutrum. Etiam eget sapien metus.&lt;/p&gt;
@@ -782,14 +807,14 @@ Enter to keep the current selection[+], or &lt;span class=&quot;nb&quot;&gt;type
 &lt;p&gt;Proin at libero id lorem fermentum elementum quis eget est.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Nam bibendum turpis massa, at accumsan justo fermentum ac.&lt;/li&gt;
-&lt;li&gt;Nulla non nulla ut ante condimentum mattis vel at lectus.&lt;/li&gt;
-&lt;li&gt;Etiam eget tortor tincidunt, iaculis ligula a, tristique massa. Fusce sed congue lorem, interdum sodales nisl.&lt;/li&gt;
+  &lt;li&gt;Nam bibendum turpis massa, at accumsan justo fermentum ac.&lt;/li&gt;
+  &lt;li&gt;Nulla non nulla ut ante condimentum mattis vel at lectus.&lt;/li&gt;
+  &lt;li&gt;Etiam eget tortor tincidunt, iaculis ligula a, tristique massa. Fusce sed congue lorem, interdum sodales nisl.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;Etiam consequat euismod ornare. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla pellentesque ipsum vulputate, pellentesque nisl vitae, lacinia sem. Praesent auctor felis et odio ultrices, nec tempor elit lobortis. Etiam ornare massa non risus luctus, id iaculis lacus egestas. Pellentesque massa dolor, mattis id lobortis eget, tristique vitae est.&lt;/p&gt;
 
-&lt;hr&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;Nam vulputate leo vitae libero vehicula, id tincidunt velit malesuada. In vel ornare nisi, id semper turpis. Vivamus erat elit, venenatis quis dui at, convallis suscipit sapien. Nunc in nisi scelerisque, aliquam mauris porttitor, facilisis ligula. Vestibulum cursus erat ac turpis bibendum, id pulvinar dolor dapibus. Proin vitae justo et velit imperdiet ultrices id id odio. Cras adipiscing ante vel mauris lobortis rutrum. Aenean eu felis est. In lacinia porttitor risus non sagittis.&lt;/p&gt;
 

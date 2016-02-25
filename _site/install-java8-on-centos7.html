@@ -54,7 +54,7 @@
   <time class="published" datetime="2015-05-19">19 May 2015</time>
   <h2>Install Java 8 on Centos 7</h2>
 
-  <h3>Downloading Latest Java Archive</h3>
+  <h3 id="downloading-latest-java-archive">Downloading Latest Java Archive</h3>
 
 <p>Download latest Java SE Development Kit 8 release from its official download page or use following commands to download from shell</p>
 
@@ -72,16 +72,16 @@
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># yum -y install wget</span></code></pre></figure>
 
-<h3>Configuring Environment Variables</h3>
+<h3 id="configuring-environment-variables">Configuring Environment Variables</h3>
 
-<p>Most of Java based application’s uses environment variables to work. CentOS provides of <code>/etc/profile.d/</code> directory for customizing environment variables per application</p>
+<p>Most of Java based application’s uses environment variables to work. CentOS provides of <code class="highlighter-rouge">/etc/profile.d/</code> directory for customizing environment variables per application</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># echo "export JAVA_HOME=/opt/jdk1.8.0_45/" &gt;&gt; /etc/profile.d/java.sh</span>
 <span class="c"># echo "export JRE_HOME=/opt/jdk1.8.0_45/jre/" &gt;&gt; /etc/profile.d/java.sh</span>
 <span class="c"># echo "export PATH=\$PATH:\$JAVA_HOME/bin/:\$JRE_HOME/bin/" &gt;&gt; /etc/profile.d/java.sh</span>
 <span class="c"># source /etc/profile.d/java.sh</span></code></pre></figure>
 
-<h3>Install Java with Alternatives</h3>
+<h3 id="install-java-with-alternatives">Install Java with Alternatives</h3>
 
 <p>After setting Environment Variables use Alternatives to install Java</p>
 

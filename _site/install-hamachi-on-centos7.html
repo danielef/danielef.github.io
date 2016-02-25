@@ -54,36 +54,36 @@
   <time class="published" datetime="2015-06-03">03 June 2015</time>
   <h2>Install Hamachi on CentOS 7</h2>
 
-  <h3>Downloading and Install Latest Hamachi</h3>
+  <h3 id="downloading-and-install-latest-hamachi">Downloading and Install Latest Hamachi</h3>
 
 <p>Download latest Logmein Hamachi release from its official download page or use following command to download from shell</p>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text"># wget https://secure.logmein.com/labs/logmein-hamachi-2.1.0.139-1.x86_64.rpm</code></pre></figure>
 
-<p><code>logmein-hamachi</code> package depends on <code>redhat-lsb-core module</code>, install them using <code>yum</code></p>
+<p><code class="highlighter-rouge">logmein-hamachi</code> package depends on <code class="highlighter-rouge">redhat-lsb-core module</code>, install them using <code class="highlighter-rouge">yum</code></p>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text"># yum install redhat-lsb-core logmein-hamachi-2.1.0.139-1.x86_64.rpm</code></pre></figure>
 
-<p>If you type <code>ip addr</code> in shell, you can see a new interface called <code>ham0</code></p>
+<p>If you type <code class="highlighter-rouge">ip addr</code> in shell, you can see a new interface called <code class="highlighter-rouge">ham0</code></p>
 
-<p><img src="/public/images/ham0.png" alt="ham0 Interface"></p>
+<p><img src="/public/images/ham0.png" alt="ham0 Interface" /></p>
 
-<h3>Joining to Hamachi Network</h3>
+<h3 id="joining-to-hamachi-network">Joining to Hamachi Network</h3>
 
 <p>In LogmeIn page, in Networks section, go to My Networks and copy your network ID</p>
 
-<p>In your host, use  <code>hamachi</code> command for request access to your network as following</p>
+<p>In your host, use  <code class="highlighter-rouge">hamachi</code> command for request access to your network as following</p>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text"># hamachi login
 Logging in .......... ok
 # hamachi do-join 000-000-000
 Joining 000-000-000 .. ok, request sent, waiting for approval</code></pre></figure>
 
-<p><strong>Note:</strong> <em><code>000-000-000</code> is your network ID</em></p>
+<p><strong>Note:</strong> <em><code class="highlighter-rouge">000-000-000</code> is your network ID</em></p>
 
-<p>Finally go to LogmeIn dashboard for approve host access, then hamachi assigns to <code>ham0</code> a valid IP in your Hamachi Network</p>
+<p>Finally go to LogmeIn dashboard for approve host access, then hamachi assigns to <code class="highlighter-rouge">ham0</code> a valid IP in your Hamachi Network</p>
 
-<p><img src="/public/images/ham1.png" alt="ham0 Ready"></p>
+<p><img src="/public/images/ham1.png" alt="ham0 Ready" /></p>
 
 </article>
 

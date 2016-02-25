@@ -54,7 +54,7 @@
   <time class="published" datetime="2015-07-17">17 July 2015</time>
   <h2>Install Postgis 2.1 on Centos 7</h2>
 
-  <h3>Adding pgdg94 Repository</h3>
+  <h3 id="adding-pgdg94-repository">Adding pgdg94 Repository</h3>
 
 <p>By default, Centos 7 includes Postgresql 9.2 and Postgis 2.0. To install a most recently version we must to add the PostgreSQL official RPM Repository to YUM system.</p>
 
@@ -63,19 +63,19 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># yum erase postgresql-server postgis</span>
 <span class="c"># yum autoremove</span></code></pre></figure>
 
-<p>Download and install latest RPM Repository file for Centos 7 as follow: </p>
+<p>Download and install latest RPM Repository file for Centos 7 as follow:</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># cd /opt/</span>
 <span class="c"># wget http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm</span>
 <span class="c"># rpm -ivh pgdg-centos94-9.4-1.noarch.rpm </span></code></pre></figure>
 
-<h3>Installing</h3>
+<h3 id="installing">Installing</h3>
 
 <p>After this, you can install Postgis 2.1.8 and PostgreSQL 9.4.4</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># yum install postgresql94-server postgis2_94</span></code></pre></figure>
 
-<h3>First Start</h3>
+<h3 id="first-start">First Start</h3>
 
 <p>Activate PortgreSQL to start automatically on boot</p>
 
@@ -88,6 +88,7 @@
 <p>Finally, start PostgreSQL</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># systemctl start postgresql-9.4</span></code></pre></figure>
+
 
 </article>
 

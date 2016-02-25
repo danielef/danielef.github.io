@@ -4,7 +4,7 @@
     <!-- meta information -->
 <meta charset="utf-8">
 <meta name="description" 
-      content="Network ScenarioWe have three servers in two different physical locationsDescriptionNetwork 1Balancerha.cognicio.usAd..." >
+      content="Network ScenarioWe have three servers in two different physical locations            Description      Network 1      ..." >
 <meta name="author" content="Aigars Dzerviniks">
 
 <!-- Enable responsiveness on mobile devices-->
@@ -54,39 +54,42 @@
   <time class="published" datetime="2015-05-21">21 May 2015</time>
   <h2>Install Glassfish 4 Cluster</h2>
 
-  <h3>Network Scenario</h3>
+  <h3 id="network-scenario">Network Scenario</h3>
 
 <p>We have three servers in two different physical locations</p>
 
-<table><thead>
-<tr>
-<th>Description</th>
-<th>Network 1</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Balancer</td>
-<td><code>ha.cognicio.us</code></td>
-</tr>
-<tr>
-<td>Admin</td>
-<td><code>das.cognicio.us</code></td>
-</tr>
-<tr>
-<td>Farm</td>
-<td><code>farm01.cognicio.us</code></td>
-</tr>
-<tr>
-<td>Farm</td>
-<td><code>farm02.cognicio.us</code></td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Network 1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Balancer</td>
+      <td><code class="highlighter-rouge">ha.cognicio.us</code></td>
+    </tr>
+    <tr>
+      <td>Admin</td>
+      <td><code class="highlighter-rouge">das.cognicio.us</code></td>
+    </tr>
+    <tr>
+      <td>Farm</td>
+      <td><code class="highlighter-rouge">farm01.cognicio.us</code></td>
+    </tr>
+    <tr>
+      <td>Farm</td>
+      <td><code class="highlighter-rouge">farm02.cognicio.us</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Admin and Farm servers have private IPs and will access to each others via Private Network</p>
 
-<h3>SELinux Configuration</h3>
+<h3 id="selinux-configuration">SELinux Configuration</h3>
 
-<p>Is important disable SELinux in Admin and Farm servers in <code>/etc/selinux/config</code> (You will need to reboot your systems).</p>
+<p>Is important disable SELinux in Admin and Farm servers in <code class="highlighter-rouge">/etc/selinux/config</code> (You will need to reboot your systems).</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># This file controls the state of SELinux on the system.</span>
 <span class="c"># SELINUX= can take one of these three values:</span>
@@ -100,53 +103,53 @@
 <span class="c">#     mls - Multi Level Security protection.</span>
 <span class="nv">SELINUXTYPE</span><span class="o">=</span>targeted</code></pre></figure>
 
-<p>Admin and Farm servers need to <a href="/install-java8-on-centos7/">Install of Java 8 on Centos 7</a>, also is mandatory create an user <code>glassfish</code> in each of this servers, passwords can differ (please!)</p>
+<p>Admin and Farm servers need to <a href="/install-java8-on-centos7/">Install of Java 8 on Centos 7</a>, also is mandatory create an user <code class="highlighter-rouge">glassfish</code> in each of this servers, passwords can differ (please!)</p>
 
-<h4>In Admin <code>das.cognicio.us</code></h4>
+<h4 id="in-admin-dascognicious">In Admin <code class="highlighter-rouge">das.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">das# useradd glassfish
 das# passwd glassfish</code></pre></figure>
 
-<h4>In Farm <code>farm01.cognicio.us</code></h4>
+<h4 id="in-farm-farm01cognicious">In Farm <code class="highlighter-rouge">farm01.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">farm01# useradd glassfish
 farm01# passwd glassfish</code></pre></figure>
 
-<h4>In Farm <code>farm02.cognicio.us</code></h4>
+<h4 id="in-farm-farm02cognicious">In Farm <code class="highlighter-rouge">farm02.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">farm02# useradd glassfish
 farm02# passwd glassfish</code></pre></figure>
 
-<h3>Glassfish 4 Download and Directory Structure</h3>
+<h3 id="glassfish-4-download-and-directory-structure">Glassfish 4 Download and Directory Structure</h3>
 
 <p>First, we proceed to Glassfish 4 installation only in Admin</p>
 
-<h4>In Admin <code>das.cognicio.us</code></h4>
+<h4 id="in-admin-dascognicious-1">In Admin <code class="highlighter-rouge">das.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">das# cd /opt
 das# wget http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip
 das# unzip glassfish-4.1.zip
 das# chown -R glassfish:glassfish glassfish4</code></pre></figure>
 
-<p>In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure </p>
+<p>In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure</p>
 
-<h4>In Farm <code>farm01.cognicio.us</code></h4>
+<h4 id="in-farm-farm01cognicious-1">In Farm <code class="highlighter-rouge">farm01.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">farm01# cd /opt
 farm01# mkdir glassfish4
 farm01# chown -R glassfish:glassfish glassfish4</code></pre></figure>
 
-<h4>In Farm <code>farm02.cognicio.us</code></h4>
+<h4 id="in-farm-farm02cognicious-1">In Farm <code class="highlighter-rouge">farm02.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">farm02# cd /opt
 farm02# mkdir glassfish4
 farm02# chown -R glassfish:glassfish glassfish4</code></pre></figure>
 
-<h3>Config Domain Creation</h3>
+<h3 id="config-domain-creation">Config Domain Creation</h3>
 
-<p>Is mandatory to create a domain for Glassfish in Admin as <code>glassfish</code> user. <strong>Remember your admin Username and Password</strong></p>
+<p>Is mandatory to create a domain for Glassfish in Admin as <code class="highlighter-rouge">glassfish</code> user. <strong>Remember your admin Username and Password</strong></p>
 
-<h4>In Admin <code>das.cognicio.us</code></h4>
+<h4 id="in-admin-dascognicious-2">In Admin <code class="highlighter-rouge">das.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text"># cd /opt/glassfish4
 # su glassfish
@@ -173,13 +176,13 @@ Domain dasdomain admin port is 4848.
 Domain dasdomain admin user is "admin".
 Command create-domain executed successfully.</code></pre></figure>
 
-<p><strong>Note</strong> <em>Do not forget to verify <code>/opt/glassfish4/glassfish/domains/dasdomain/config/domain.xml</code> file for any ocurrence of <code>localhost</code> (replace it by your hostname, in this case, <code>das.cognicio.us</code>)</em></p>
+<p><strong>Note</strong> <em>Do not forget to verify <code class="highlighter-rouge">/opt/glassfish4/glassfish/domains/dasdomain/config/domain.xml</code> file for any ocurrence of <code class="highlighter-rouge">localhost</code> (replace it by your hostname, in this case, <code class="highlighter-rouge">das.cognicio.us</code>)</em></p>
 
-<h3>DAS Domain First Start</h3>
+<h3 id="das-domain-first-start">DAS Domain First Start</h3>
 
-<p>Our <code>das.cognicio.us</code> server is ready for its first start using <code>asadmin</code> as follow:</p>
+<p>Our <code class="highlighter-rouge">das.cognicio.us</code> server is ready for its first start using <code class="highlighter-rouge">asadmin</code> as follow:</p>
 
-<h4>In Admin <code>das.cognicio.us</code></h4>
+<h4 id="in-admin-dascognicious-3">In Admin <code class="highlighter-rouge">das.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">das$ bin/asadmin start-domain dasdomain
 Waiting for dasdomain to start ........
@@ -189,7 +192,7 @@ Log File: /opt/glassfish4/glassfish/domains/dasdomain/logs/server.log
 Admin Port: 4848
 Command start-domain executed successfully.</code></pre></figure>
 
-<p>To allow remote administration use <code>enable-secure-admin</code></p>
+<p>To allow remote administration use <code class="highlighter-rouge">enable-secure-admin</code></p>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">das$ bin/asadmin enable-secure-admin
 Enter admin user name&gt;  admin
@@ -197,37 +200,40 @@ Enter admin password for user "admin"&gt;
 You must restart all running servers for the change in secure admin to take effect.
 Command enable-secure-admin executed successfully.</code></pre></figure>
 
-<h3>Admin Firewall Rules</h3>
+<h3 id="admin-firewall-rules">Admin Firewall Rules</h3>
 
 <p>We need also configure a set of rules for firewall access.</p>
 
-<table><thead>
-<tr>
-<th>Port</th>
-<th>Usage</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>4848</td>
-<td>Glassfish Administration Console</td>
-</tr>
-<tr>
-<td>3820</td>
-<td>IIOP</td>
-</tr>
-<tr>
-<td>3920</td>
-<td>IIOP</td>
-</tr>
-<tr>
-<td>3700</td>
-<td>IIOP</td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Port</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>4848</td>
+      <td>Glassfish Administration Console</td>
+    </tr>
+    <tr>
+      <td>3820</td>
+      <td>IIOP</td>
+    </tr>
+    <tr>
+      <td>3920</td>
+      <td>IIOP</td>
+    </tr>
+    <tr>
+      <td>3700</td>
+      <td>IIOP</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>Using <code>firewall-cmd</code> add permanent access in each port as follows</p>
+<p>Using <code class="highlighter-rouge">firewall-cmd</code> add permanent access in each port as follows</p>
 
-<h4>In Admin <code>das.cognicio.us</code></h4>
+<h4 id="in-admin-dascognicious-4">In Admin <code class="highlighter-rouge">das.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">das$ su - root
 Password:
@@ -237,224 +243,235 @@ das# firewall-cmd --permanent --add-port=3920/tcp
 das# firewall-cmd --permanent --add-port=3700/tcp
 das# firewall-cmd --reload</code></pre></figure>
 
-<h3>Installation of Glassfish 4.1 in Farm Servers</h3>
+<h3 id="installation-of-glassfish-41-in-farm-servers">Installation of Glassfish 4.1 in Farm Servers</h3>
 
-<p>This task will be executed from <code>das.cognicio.us</code> server using <code>asadmin</code> utility.</p>
+<p>This task will be executed from <code class="highlighter-rouge">das.cognicio.us</code> server using <code class="highlighter-rouge">asadmin</code> utility.</p>
 
-<p>To install to <code>farm01.cognicio.us</code></p>
+<p>To install to <code class="highlighter-rouge">farm01.cognicio.us</code></p>
 
-<h4>In Admin <code>das.cognicio.us</code></h4>
+<h4 id="in-admin-dascognicious-5">In Admin <code class="highlighter-rouge">das.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">das$ bin/asadmin install-node-ssh farm01.cognicio.us
 Enter remote password for glassfish@farm01.cognicio.us&gt;</code></pre></figure>
 
-<p>And exactly to <code>farm02.cognicio.us</code></p>
-
-<h4>In Admin <code>das.cognicio.us</code></h4>
+<p>And exactly to <code class="highlighter-rouge">farm02.cognicio.us</code>
+#### In Admin <code class="highlighter-rouge">das.cognicio.us</code></p>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">das$ bin/asadmin install-node-ssh farm02.cognicio.us
 Enter remote password for glassfish@farm01.cognicio.us&gt;</code></pre></figure>
 
-<h3>Nodes Creation</h3>
+<h3 id="nodes-creation">Nodes Creation</h3>
 
-<p>Go to Glassfish Administration Console in <code>https://das.cognicio.us:4848/</code>, login using Username and Password specified in <strong>Config Domain Creation</strong></p>
+<p>Go to Glassfish Administration Console in <code class="highlighter-rouge">https://das.cognicio.us:4848/</code>, login using Username and Password specified in <strong>Config Domain Creation</strong></p>
 
-<p><img src="/public/images/gf-cluster-01.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-01.png" alt="login" /></p>
 
 <p>In left sidebar, go to Nodes section</p>
 
-<p><img src="/public/images/gf-cluster-02.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-02.png" alt="login" /></p>
 
-<p>Create a new Node with <code>New</code> button with following parameters and values</p>
+<p>Create a new Node with <code class="highlighter-rouge">New</code> button with following parameters and values</p>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Name</td>
-<td>node01</td>
-</tr>
-<tr>
-<td>Type</td>
-<td>SSH</td>
-</tr>
-<tr>
-<td>Node Host</td>
-<td>farm01.cognicio.us</td>
-</tr>
-<tr>
-<td>Node Directory</td>
-<td><em>empty</em></td>
-</tr>
-<tr>
-<td>Install Glassfish Server</td>
-<td>unchecked</td>
-</tr>
-<tr>
-<td>Force</td>
-<td>unchecked</td>
-</tr>
-<tr>
-<td>SSH Port</td>
-<td>22</td>
-</tr>
-<tr>
-<td>SSH User Name</td>
-<td>${user.name}</td>
-</tr>
-<tr>
-<td>SSH User Autentication</td>
-<td>Password</td>
-</tr>
-<tr>
-<td>SSH User Password</td>
-<td><em>somesecret</em></td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>node01</td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td>SSH</td>
+    </tr>
+    <tr>
+      <td>Node Host</td>
+      <td>farm01.cognicio.us</td>
+    </tr>
+    <tr>
+      <td>Node Directory</td>
+      <td><em>empty</em></td>
+    </tr>
+    <tr>
+      <td>Install Glassfish Server</td>
+      <td>unchecked</td>
+    </tr>
+    <tr>
+      <td>Force</td>
+      <td>unchecked</td>
+    </tr>
+    <tr>
+      <td>SSH Port</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td>SSH User Name</td>
+      <td>${user.name}</td>
+    </tr>
+    <tr>
+      <td>SSH User Autentication</td>
+      <td>Password</td>
+    </tr>
+    <tr>
+      <td>SSH User Password</td>
+      <td><em>somesecret</em></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>Click in <code>OK</code> button. </p>
+<p>Click in <code class="highlighter-rouge">OK</code> button.</p>
 
-<p><img src="/public/images/gf-cluster-03.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-03.png" alt="login" /></p>
 
 <p>Repeat this steps to create a second Node with following values</p>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Name</td>
-<td>node02</td>
-</tr>
-<tr>
-<td>Type</td>
-<td>SSH</td>
-</tr>
-<tr>
-<td>Node Host</td>
-<td>farm02.cognicio.us</td>
-</tr>
-<tr>
-<td>Node Directory</td>
-<td><em>empty</em></td>
-</tr>
-<tr>
-<td>Install Glassfish Server</td>
-<td>unchecked</td>
-</tr>
-<tr>
-<td>Force</td>
-<td>unchecked</td>
-</tr>
-<tr>
-<td>SSH Port</td>
-<td>22</td>
-</tr>
-<tr>
-<td>SSH User Name</td>
-<td>${user.name}</td>
-</tr>
-<tr>
-<td>SSH User Autentication</td>
-<td>Password</td>
-</tr>
-<tr>
-<td>SSH User Password</td>
-<td><em>somesecret</em></td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>node02</td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td>SSH</td>
+    </tr>
+    <tr>
+      <td>Node Host</td>
+      <td>farm02.cognicio.us</td>
+    </tr>
+    <tr>
+      <td>Node Directory</td>
+      <td><em>empty</em></td>
+    </tr>
+    <tr>
+      <td>Install Glassfish Server</td>
+      <td>unchecked</td>
+    </tr>
+    <tr>
+      <td>Force</td>
+      <td>unchecked</td>
+    </tr>
+    <tr>
+      <td>SSH Port</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td>SSH User Name</td>
+      <td>${user.name}</td>
+    </tr>
+    <tr>
+      <td>SSH User Autentication</td>
+      <td>Password</td>
+    </tr>
+    <tr>
+      <td>SSH User Password</td>
+      <td><em>somesecret</em></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>In Node section you can see 3 nodes: one of type <code>CONFIG</code> and two of type <code>SSH</code> (<code>node01</code> and <code>node02</code>). SSH nodes are running in two remote servers <code>farm01.cognicio.us</code> and <code>farm02.cognicio.us</code>.</p>
+<p>In Node section you can see 3 nodes: one of type <code class="highlighter-rouge">CONFIG</code> and two of type <code class="highlighter-rouge">SSH</code> (<code class="highlighter-rouge">node01</code> and <code class="highlighter-rouge">node02</code>). SSH nodes are running in two remote servers <code class="highlighter-rouge">farm01.cognicio.us</code> and <code class="highlighter-rouge">farm02.cognicio.us</code>.</p>
 
-<p><img src="/public/images/gf-cluster-04.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-04.png" alt="login" /></p>
 
-<h3>Cluster and Instances Creation</h3>
+<h3 id="cluster-and-instances-creation">Cluster and Instances Creation</h3>
 
-<p>Go to Clusters section and add a new cluster with <code>New</code> button</p>
+<p>Go to Clusters section and add a new cluster with <code class="highlighter-rouge">New</code> button</p>
 
-<p><img src="/public/images/gf-cluster-05.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-05.png" alt="login" /></p>
 
 <p>Lets create this cluster with following values</p>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Cluster Name</td>
-<td>cluster01</td>
-</tr>
-<tr>
-<td>Configuration</td>
-<td>default-config and Make a Copy of Selected Configuration</td>
-</tr>
-<tr>
-<td>Message Queue Cluster Config Type</td>
-<td>Default: Embedded Conventional Cluster with Master Broker</td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cluster Name</td>
+      <td>cluster01</td>
+    </tr>
+    <tr>
+      <td>Configuration</td>
+      <td>default-config and Make a Copy of Selected Configuration</td>
+    </tr>
+    <tr>
+      <td>Message Queue Cluster Config Type</td>
+      <td>Default: Embedded Conventional Cluster with Master Broker</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>In the same screen, with <code>New</code> button, we create two instances using following values</p>
+<p>In the same screen, with <code class="highlighter-rouge">New</code> button, we create two instances using following values</p>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Row1</th>
-<th>Row2</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Select</td>
-<td>unchecked</td>
-<td>unchecked</td>
-</tr>
-<tr>
-<td>Instance Name</td>
-<td>instance01</td>
-<td>instance02</td>
-</tr>
-<tr>
-<td>Weight</td>
-<td><em>empty</em></td>
-<td><em>empty</em></td>
-</tr>
-<tr>
-<td>Node</td>
-<td>node01</td>
-<td>node02</td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Row1</th>
+      <th>Row2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Select</td>
+      <td>unchecked</td>
+      <td>unchecked</td>
+    </tr>
+    <tr>
+      <td>Instance Name</td>
+      <td>instance01</td>
+      <td>instance02</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td><em>empty</em></td>
+      <td><em>empty</em></td>
+    </tr>
+    <tr>
+      <td>Node</td>
+      <td>node01</td>
+      <td>node02</td>
+    </tr>
+  </tbody>
+</table>
 
-<p><img src="/public/images/gf-cluster-06.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-06.png" alt="login" /></p>
 
-<p>Click in <code>OK</code> button and wait ...</p>
+<p>Click in <code class="highlighter-rouge">OK</code> button and wait …</p>
 
-<p><img src="/public/images/gf-cluster-08.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-08.png" alt="login" /></p>
 
 <p>If your screen looks like this, your cluster has been created successfully</p>
 
-<p><img src="/public/images/gf-cluster-09.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-09.png" alt="login" /></p>
 
-<p>Before to start the cluster, we must add some firewall rules in Farm servers <code>farm01.cognicio.us</code> and <code>farm02.cognicio.us</code></p>
+<p>Before to start the cluster, we must add some firewall rules in Farm servers <code class="highlighter-rouge">farm01.cognicio.us</code> and <code class="highlighter-rouge">farm02.cognicio.us</code></p>
 
-<h3>Farm Firewall Rules</h3>
+<h3 id="farm-firewall-rules">Farm Firewall Rules</h3>
 
-<p>In Glassfish Administration Console, go to <code>Configurations &gt; cluster01-config &gt; System Properties</code></p>
+<p>In Glassfish Administration Console, go to <code class="highlighter-rouge">Configurations &gt; cluster01-config &gt; System Properties</code></p>
 
-<p><img src="/public/images/gf-cluster-11.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-11.png" alt="login" /></p>
 
-<p>This table shows all ports used by <code>instance01</code> and <code>instance02</code>. Remember that this instances runs over Nodes <code>node01</code> and <code>node02</code> and each of this are installed in Farm servers <code>farm01.cognicio.us</code> and <code>farm02.cognicio.us</code></p>
+<p>This table shows all ports used by <code class="highlighter-rouge">instance01</code> and <code class="highlighter-rouge">instance02</code>. Remember that this instances runs over Nodes <code class="highlighter-rouge">node01</code> and <code class="highlighter-rouge">node02</code> and each of this are installed in Farm servers <code class="highlighter-rouge">farm01.cognicio.us</code> and <code class="highlighter-rouge">farm02.cognicio.us</code></p>
 
-<p>Therefore, using <code>firewall-cmd</code> add permanent access in each port as follows</p>
+<p>Therefore, using <code class="highlighter-rouge">firewall-cmd</code> add permanent access in each port as follows</p>
 
-<h4>In Admin <code>farm01.cognicio.us</code></h4>
+<h4 id="in-admin-farm01cognicious">In Admin <code class="highlighter-rouge">farm01.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">farm01# firewall-cmd --permanent --add-port=24848/tcp
 farm01# firewall-cmd --permanent --add-port=28080/tcp
@@ -468,7 +485,7 @@ farm01# firewall-cmd --permanent --add-port=28686/tcp
 farm01# firewall-cmd --permanent --add-port=26666/tcp
 farm01# firewall-cmd --reload</code></pre></figure>
 
-<h4>In Admin <code>farm02.cognicio.us</code></h4>
+<h4 id="in-admin-farm02cognicious">In Admin <code class="highlighter-rouge">farm02.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">farm02# firewall-cmd --permanent --add-port=24848/tcp
 farm02# firewall-cmd --permanent --add-port=28080/tcp
@@ -482,27 +499,27 @@ farm02# firewall-cmd --permanent --add-port=28686/tcp
 farm02# firewall-cmd --permanent --add-port=26666/tcp
 farm02# firewall-cmd --reload</code></pre></figure>
 
-<h3>Cluster Start</h3>
+<h3 id="cluster-start">Cluster Start</h3>
 
-<p>In Glassfish Administration Console, go to <code>Cluster</code>, select <code>cluster01</code> and click in <code>Start Cluster</code></p>
+<p>In Glassfish Administration Console, go to <code class="highlighter-rouge">Cluster</code>, select <code class="highlighter-rouge">cluster01</code> and click in <code class="highlighter-rouge">Start Cluster</code></p>
 
-<p><img src="/public/images/gf-cluster-12.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-12.png" alt="login" /></p>
 
 <p>Finally, if you can see all instance icons in green, congratulations! the cluster is ready</p>
 
-<p><img src="/public/images/gf-cluster-07.png" alt="login"></p>
+<p><img src="/public/images/gf-cluster-07.png" alt="login" /></p>
 
-<h3>HA with Apache2</h3>
+<h3 id="ha-with-apache2">HA with Apache2</h3>
 
-<p>In Balancer <code>ha.cognicio.us</code> install Apache HTTPD and Core Utils</p>
+<p>In Balancer <code class="highlighter-rouge">ha.cognicio.us</code> install Apache HTTPD and Core Utils</p>
 
-<h4>In Admin <code>ha.cognicio.us</code></h4>
+<h4 id="in-admin-hacognicious">In Admin <code class="highlighter-rouge">ha.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">ha# yum -y install httpd policycoreutils-python</code></pre></figure>
 
 <p>Add security rules for 80 port using semanage and firewall-cmd</p>
 
-<h4>In Admin <code>ha.cognicio.us</code></h4>
+<h4 id="in-admin-hacognicious-1">In Admin <code class="highlighter-rouge">ha.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">ha# semanage port -a -t http_port_t -p tcp 80
 ha# setsebool -P httpd_can_network_connect 1
@@ -511,15 +528,15 @@ ha# firewall-cmd --reload</code></pre></figure>
 
 <p>Start Apache HTTPD with systemctl</p>
 
-<h4>In Admin <code>ha.cognicio.us</code></h4>
+<h4 id="in-admin-hacognicious-2">In Admin <code class="highlighter-rouge">ha.cognicio.us</code></h4>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">ha# systemctl start httpd</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">&lt;VirtualHost *:80&gt;
         ProxyRequests Off
-    ProxyTimeout 10000
-        ProxyPreserveHost On
-        ProxyVia On
+	ProxyTimeout 10000
+      	ProxyPreserveHost On
+      	ProxyVia On
         
         ServerName cluster.cognicio.us
 
@@ -542,7 +559,7 @@ ha# firewall-cmd --reload</code></pre></figure>
                 # that all webheads take an equal share of
                 # of the load.
                 # ProxySet lbmethod=byrequests
-            ProxySet lbmethod=bytraffic
+	        ProxySet lbmethod=bytraffic
                 ProxySet stickysession=JSESSIONID
 
         &lt;/Proxy&gt;
@@ -568,9 +585,9 @@ ha# firewall-cmd --reload</code></pre></figure>
         # or everything in the site.
         
         #ProxyPass /clusterjsp balancer://mycluster/clusterjsp stickysession=JSESSIONID
-    ProxyPass / balancer://mycluster/
+	ProxyPass / balancer://mycluster/
         ProxyPassReverse /  balancer://mycluster/
-        ProxyPassReverseCookieDomain balancer://mycluster/ http://cluster.cognicio.us   
+        ProxyPassReverseCookieDomain balancer://mycluster/ http://cluster.cognicio.us	
 &lt;/VirtualHost&gt;</code></pre></figure>
 
 </article>
