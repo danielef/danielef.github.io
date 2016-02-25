@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" 
+      content="Adding pgdg94 RepositoryBy default, Centos 7 includes Postgresql 9.2 and Postgis 2.0. To install a most recently vers..." >
+<meta name="author" content="Aigars Dzerviniks">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>Install Postgis 2.1 on Centos 7 &middot; Brume</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="/public/css/animate.min.css">
+<link rel="stylesheet" href="/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+
+
+<!-- feed links -->
+<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
+
+  </head>
+  <body>
+    <div class="container amber">
+      <header class="top row gutters">
+        <div class="col span_2 center">
+          <!-- TODO: add baseurl to the logo link -->
+          <a href="" id="logo" title="Brume"
+             style="background-image: url(https://pbs.twimg.com/profile_images/378800000255118762/5faff7b8fcdde5d47ffeafcea3540503.png);"></a>
+        </div>
+        <nav class="col span_10 top-navbar">
+  
+  <a href="/" title="Home"
+     >Home</a>
+  
+  <a href="/about" title="About"
+     >About</a>
+  
+</nav>
+
+      </header>
+
+      <article class="single row gutters">
+  <time class="published" datetime="2015-07-17">17 July 2015</time>
+  <h2>Install Postgis 2.1 on Centos 7</h2>
+
+  <h3>Adding pgdg94 Repository</h3>
+
+<p>By default, Centos 7 includes Postgresql 9.2 and Postgis 2.0. To install a most recently version we must to add the PostgreSQL official RPM Repository to YUM system.</p>
+
+<p><strong>Note</strong> <em>For avoid a dependency hell, uninstall your Postgis and PostgreSQL previously installed</em></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># yum erase postgresql-server postgis</span>
+<span class="c"># yum autoremove</span></code></pre></figure>
+
+<p>Download and install latest RPM Repository file for Centos 7 as follow: </p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># cd /opt/</span>
+<span class="c"># wget http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm</span>
+<span class="c"># rpm -ivh pgdg-centos94-9.4-1.noarch.rpm </span></code></pre></figure>
+
+<h3>Installing</h3>
+
+<p>After this, you can install Postgis 2.1.8 and PostgreSQL 9.4.4</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># yum install postgresql94-server postgis2_94</span></code></pre></figure>
+
+<h3>First Start</h3>
+
+<p>Activate PortgreSQL to start automatically on boot</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># systemctl enable postgresql-9.4</span></code></pre></figure>
+
+<p>Initialize PostgreSQL database using following command</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># /usr/pgsql-9.4/bin/postgresql94-setup initdb</span></code></pre></figure>
+
+<p>Finally, start PostgreSQL</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># systemctl start postgresql-9.4</span></code></pre></figure>
+
+</article>
+
+
+      <footer>
+        <p>
+          This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/deed.en_US">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/public/js/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("article").fitVids();
+      });
+    </script>
+  </body>
+</html>

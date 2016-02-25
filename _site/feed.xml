@@ -6,9 +6,73 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>It's simple. It's easy to use. It's a Jekyll theme.</description>
     <language>en-us</language>
-    <pubDate>Tue, 16 Jun 2015 15:25:34 -0500</pubDate>
-    <lastBuildDate>Tue, 16 Jun 2015 15:25:34 -0500</lastBuildDate>
+    <pubDate>Wed, 24 Feb 2016 19:00:19 -0600</pubDate>
+    <lastBuildDate>Wed, 24 Feb 2016 19:00:19 -0600</lastBuildDate>
 
+    
+      <item>
+        <title>Install EPEL Repository on CentOS 7</title>
+        <link>/install-epel-repo-centos7</link>
+        <pubDate>Wed, 24 Feb 2016 00:00:00 -0600</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;h3&gt;Intro&lt;/h3&gt;
+
+&lt;p&gt;The EPEL repository provides useful software packages that are not included in the official CentOS or Red Hat Enterprise Linux repositories.&lt;/p&gt;
+
+&lt;h3&gt;CentOS Extras repository&lt;/h3&gt;
+
+&lt;p&gt;To install the EPEL package, run the following command:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# sudo yum install epel-release&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;If that command doesn’t work, perhaps because the CentOS Extras repository is disabled. Try to download EPEL RPM manually:&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# sudo rpm -Uvh epel-release-7*.rpm&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Install Postgis 2.1 on Centos 7</title>
+        <link>/install-postgis-on-centos7</link>
+        <pubDate>Fri, 17 Jul 2015 00:00:00 -0500</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;h3&gt;Adding pgdg94 Repository&lt;/h3&gt;
+
+&lt;p&gt;By default, Centos 7 includes Postgresql 9.2 and Postgis 2.0. To install a most recently version we must to add the PostgreSQL official RPM Repository to YUM system.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; &lt;em&gt;For avoid a dependency hell, uninstall your Postgis and PostgreSQL previously installed&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum erase postgresql-server postgis&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# yum autoremove&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Download and install latest RPM Repository file for Centos 7 as follow: &lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# wget http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# rpm -ivh pgdg-centos94-9.4-1.noarch.rpm &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3&gt;Installing&lt;/h3&gt;
+
+&lt;p&gt;After this, you can install Postgis 2.1.8 and PostgreSQL 9.4.4&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum install postgresql94-server postgis2_94&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3&gt;First Start&lt;/h3&gt;
+
+&lt;p&gt;Activate PortgreSQL to start automatically on boot&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# systemctl enable postgresql-9.4&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Initialize PostgreSQL database using following command&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# /usr/pgsql-9.4/bin/postgresql94-setup initdb&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Finally, start PostgreSQL&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# systemctl start postgresql-9.4&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</description>
+      </item>
     
       <item>
         <title>Install Hamachi on CentOS 7</title>
@@ -19,11 +83,11 @@
 
 &lt;p&gt;Download latest Logmein Hamachi release from its official download page or use following command to download from shell&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# wget https://secure.logmein.com/labs/logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# wget https://secure.logmein.com/labs/logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;code&gt;logmein-hamachi&lt;/code&gt; package depends on &lt;code&gt;redhat-lsb-core module&lt;/code&gt;, install them using &lt;code&gt;yum&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# yum install redhat-lsb-core logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# yum install redhat-lsb-core logmein-hamachi-2.1.0.139-1.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;If you type &lt;code&gt;ip addr&lt;/code&gt; in shell, you can see a new interface called &lt;code&gt;ham0&lt;/code&gt;&lt;/p&gt;
 
@@ -35,10 +99,10 @@
 
 &lt;p&gt;In your host, use  &lt;code&gt;hamachi&lt;/code&gt; command for request access to your network as following&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# hamachi login
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# hamachi login
 Logging in .......... ok
 # hamachi do-join 000-000-000
-Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;&lt;code&gt;000-000-000&lt;/code&gt; is your network ID&lt;/em&gt;&lt;/p&gt;
 
@@ -87,7 +151,7 @@ Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/p
 
 &lt;p&gt;Is important disable SELinux in Admin and Farm servers in &lt;code&gt;/etc/selinux/config&lt;/code&gt; (You will need to reboot your systems).&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# This file controls the state of SELinux on the system.&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# This file controls the state of SELinux on the system.&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# SELINUX= can take one of these three values:&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#     enforcing - SELinux security policy is enforced.&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#     permissive - SELinux prints warnings instead of enforcing.&lt;/span&gt;
@@ -97,24 +161,24 @@ Joining 000-000-000 .. ok, request sent, waiting for approval&lt;/code&gt;&lt;/p
 &lt;span class=&quot;c&quot;&gt;#     targeted - Targeted processes are protected,&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#     minimum - Modification of targeted policy. Only selected processes are protected.&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#     mls - Multi Level Security protection.&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;SELINUXTYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;targeted&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;nv&quot;&gt;SELINUXTYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;targeted&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Admin and Farm servers need to &lt;a href=&quot;/install-java8-on-centos7/&quot;&gt;Install of Java 8 on Centos 7&lt;/a&gt;, also is mandatory create an user &lt;code&gt;glassfish&lt;/code&gt; in each of this servers, passwords can differ (please!)&lt;/p&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# useradd glassfish
-das# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# useradd glassfish
+das# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4&gt;In Farm &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# useradd glassfish
-farm01# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# useradd glassfish
+farm01# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4&gt;In Farm &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# useradd glassfish
-farm02# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# useradd glassfish
+farm02# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Glassfish 4 Download and Directory Structure&lt;/h3&gt;
 
@@ -122,24 +186,24 @@ farm02# passwd glassfish&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# cd /opt
-das# wget http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das# cd /opt
+das# wget http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip
 das# unzip glassfish-4.1.zip
-das# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+das# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;In following steps, the Glassfish 4.1 directory will be copied from Admin to Farm servers, therefore, we need to create an identical directory structure &lt;/p&gt;
 
 &lt;h4&gt;In Farm &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# cd /opt
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# cd /opt
 farm01# mkdir glassfish4
-farm01# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+farm01# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4&gt;In Farm &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# cd /opt
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# cd /opt
 farm02# mkdir glassfish4
-farm02# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+farm02# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Config Domain Creation&lt;/h3&gt;
 
@@ -147,10 +211,10 @@ farm02# chown -R glassfish:glassfish glassfish4&lt;/code&gt;&lt;/pre&gt;&lt;/div
 
 &lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /opt/glassfish4
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# cd /opt/glassfish4
 # su glassfish
 $ bin/asadmin create-domain dasdomain
-Enter admin user name [Enter to accept default &amp;quot;admin&amp;quot; / no password]&amp;gt;admin
+Enter admin user name [Enter to accept default &quot;admin&quot; / no password]&amp;gt;admin
 Enter the admin password [Enter to accept default of no password]&amp;gt; 
 Enter the admin password again&amp;gt; 
 Using default port 4848 for Admin.
@@ -169,8 +233,8 @@ Distinguished Name of the self-signed X.509 Server Certificate is:
 [CN=das.cognicio.us-instance,OU=GlassFish,O=Oracle Corporation,L=Santa Clara,ST=California,C=US]
 Domain dasdomain created.
 Domain dasdomain admin port is 4848.
-Domain dasdomain admin user is &amp;quot;admin&amp;quot;.
-Command create-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Domain dasdomain admin user is &quot;admin&quot;.
+Command create-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; &lt;em&gt;Do not forget to verify &lt;code&gt;/opt/glassfish4/glassfish/domains/dasdomain/config/domain.xml&lt;/code&gt; file for any ocurrence of &lt;code&gt;localhost&lt;/code&gt; (replace it by your hostname, in this case, &lt;code&gt;das.cognicio.us&lt;/code&gt;)&lt;/em&gt;&lt;/p&gt;
 
@@ -180,21 +244,21 @@ Command create-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt
 
 &lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin start-domain dasdomain
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin start-domain dasdomain
 Waiting for dasdomain to start ........
 Successfully started the domain : dasdomain
 domain  Location: /opt/glassfish4/glassfish/domains/dasdomain
 Log File: /opt/glassfish4/glassfish/domains/dasdomain/logs/server.log
 Admin Port: 4848
-Command start-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Command start-domain executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;To allow remote administration use &lt;code&gt;enable-secure-admin&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin enable-secure-admin
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin enable-secure-admin
 Enter admin user name&amp;gt;  admin
-Enter admin password for user &amp;quot;admin&amp;quot;&amp;gt; 
+Enter admin password for user &quot;admin&quot;&amp;gt; 
 You must restart all running servers for the change in secure admin to take effect.
-Command enable-secure-admin executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Command enable-secure-admin executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Admin Firewall Rules&lt;/h3&gt;
 
@@ -228,13 +292,13 @@ Command enable-secure-admin executed successfully.&lt;/code&gt;&lt;/pre&gt;&lt;/
 
 &lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ su - root
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ su - root
 Password:
 das# firewall-cmd --permanent --add-port=4848/tcp
 das# firewall-cmd --permanent --add-port=3820/tcp
 das# firewall-cmd --permanent --add-port=3920/tcp
 das# firewall-cmd --permanent --add-port=3700/tcp
-das# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+das# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Installation of Glassfish 4.1 in Farm Servers&lt;/h3&gt;
 
@@ -244,15 +308,15 @@ das# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin install-node-ssh farm01.cognicio.us
-Enter remote password for glassfish@farm01.cognicio.us&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin install-node-ssh farm01.cognicio.us
+Enter remote password for glassfish@farm01.cognicio.us&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;And exactly to &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/p&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;das.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin install-node-ssh farm02.cognicio.us
-Enter remote password for glassfish@farm01.cognicio.us&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;das$ bin/asadmin install-node-ssh farm02.cognicio.us
+Enter remote password for glassfish@farm01.cognicio.us&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Nodes Creation&lt;/h3&gt;
 
@@ -455,7 +519,7 @@ Enter remote password for glassfish@farm01.cognicio.us&amp;gt;&lt;/code&gt;&lt;/
 
 &lt;h4&gt;In Admin &lt;code&gt;farm01.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# firewall-cmd --permanent --add-port=24848/tcp
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm01# firewall-cmd --permanent --add-port=24848/tcp
 farm01# firewall-cmd --permanent --add-port=28080/tcp
 farm01# firewall-cmd --permanent --add-port=28181/tcp
 farm01# firewall-cmd --permanent --add-port=23700/tcp
@@ -465,11 +529,11 @@ farm01# firewall-cmd --permanent --add-port=29009/tcp
 farm01# firewall-cmd --permanent --add-port=27676/tcp
 farm01# firewall-cmd --permanent --add-port=28686/tcp
 farm01# firewall-cmd --permanent --add-port=26666/tcp
-farm01# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+farm01# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;farm02.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# firewall-cmd --permanent --add-port=24848/tcp
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;farm02# firewall-cmd --permanent --add-port=24848/tcp
 farm02# firewall-cmd --permanent --add-port=28080/tcp
 farm02# firewall-cmd --permanent --add-port=28181/tcp
 farm02# firewall-cmd --permanent --add-port=23700/tcp
@@ -479,7 +543,7 @@ farm02# firewall-cmd --permanent --add-port=29009/tcp
 farm02# firewall-cmd --permanent --add-port=27676/tcp
 farm02# firewall-cmd --permanent --add-port=28686/tcp
 farm02# firewall-cmd --permanent --add-port=26666/tcp
-farm02# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+farm02# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Cluster Start&lt;/h3&gt;
 
@@ -497,24 +561,24 @@ farm02# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# yum -y install httpd policycoreutils-python&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# yum -y install httpd policycoreutils-python&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Add security rules for 80 port using semanage and firewall-cmd&lt;/p&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# semanage port -a -t http_port_t -p tcp 80
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# semanage port -a -t http_port_t -p tcp 80
 ha# setsebool -P httpd_can_network_connect 1
 ha# firewall-cmd --permanent --add-port=80/tcp
-ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Start Apache HTTPD with systemctl&lt;/p&gt;
 
 &lt;h4&gt;In Admin &lt;code&gt;ha.cognicio.us&lt;/code&gt;&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# systemctl start httpd&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ha# systemctl start httpd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;VirtualHost *:80&amp;gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;VirtualHost *:80&amp;gt;
         ProxyRequests Off
     ProxyTimeout 10000
         ProxyPreserveHost On
@@ -528,7 +592,7 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
                 # WebHead2
                 BalancerMember http://192.168.1.102:28080/
 
-                # Security &amp;quot;technically we aren&amp;#39;t blocking
+                # Security &quot;technically we aren&#39;t blocking
                 # anyone but this the place to make those
                 # chages
                 Order allow,deny
@@ -563,14 +627,14 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         # Point of Balance
         # This setting will allow to explicitly name the
         # the location in the site that we want to be
-        # balanced, in this example we will balance &amp;quot;/&amp;quot;
+        # balanced, in this example we will balance &quot;/&quot;
         # or everything in the site.
         
         #ProxyPass /clusterjsp balancer://mycluster/clusterjsp stickysession=JSESSIONID
     ProxyPass / balancer://mycluster/
         ProxyPassReverse /  balancer://mycluster/
         ProxyPassReverseCookieDomain balancer://mycluster/ http://cluster.cognicio.us   
-&amp;lt;/VirtualHost&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&amp;lt;/VirtualHost&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
       </item>
     
@@ -583,52 +647,52 @@ ha# firewall-cmd --reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Download latest Java SE Development Kit 8 release from its official download page or use following commands to download from shell&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# wget --no-cookies --no-check-certificate --header &amp;quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&amp;quot; &amp;quot;http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# tar xzfv jdk-8u45-linux-x64.tar.gz&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# wget --no-cookies --no-check-certificate --header &quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&quot; &quot;http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# tar xzfv jdk-8u45-linux-x64.tar.gz&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;For production servers is highly recomended installing Java Server JRE. The Server JRE includes tools for JVM monitoring and tools commonly required for server applications, but does not include browser integration (the Java plug-in)&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# wget --no-cookies --no-check-certificate --header &amp;quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&amp;quot; &amp;quot;http://download.oracle.com/otn-pub/java/jdk/8u45-b14/server-jre-8u45-linux-x64.tar.gz&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# tar xzfv server-jre-8u45-linux-x64.tar.gz&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# cd /opt/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# wget --no-cookies --no-check-certificate --header &quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&quot; &quot;http://download.oracle.com/otn-pub/java/jdk/8u45-b14/server-jre-8u45-linux-x64.tar.gz&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# tar xzfv server-jre-8u45-linux-x64.tar.gz&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;If your Centos 7 is a fresh minimal installation, maybe you have to install wget utility using yum&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum -y install wget&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum -y install wget&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Configuring Environment Variables&lt;/h3&gt;
 
 &lt;p&gt;Most of Java based application’s uses environment variables to work. CentOS provides of &lt;code&gt;/etc/profile.d/&lt;/code&gt; directory for customizing environment variables per application&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# echo &amp;quot;export JAVA_HOME=/opt/jdk1.8.0_45/&amp;quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# echo &amp;quot;export JRE_HOME=/opt/jdk1.8.0_45/jre/&amp;quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# echo &amp;quot;export PATH=\$PATH:\$JAVA_HOME/bin/:\$JRE_HOME/bin/&amp;quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# source /etc/profile.d/java.sh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# echo &quot;export JAVA_HOME=/opt/jdk1.8.0_45/&quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# echo &quot;export JRE_HOME=/opt/jdk1.8.0_45/jre/&quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# echo &quot;export PATH=\$PATH:\$JAVA_HOME/bin/:\$JRE_HOME/bin/&quot; &amp;gt;&amp;gt; /etc/profile.d/java.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# source /etc/profile.d/java.sh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;Install Java with Alternatives&lt;/h3&gt;
 
 &lt;p&gt;After setting Environment Variables use Alternatives to install Java&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 1&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 1&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# alternatives --config java&lt;/span&gt;
 
-There are &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; programs which provide &lt;span class=&quot;s1&quot;&gt;&amp;#39;java&amp;#39;&lt;/span&gt;.
+There are 3 programs which provide &lt;span class=&quot;s1&quot;&gt;&#39;java&#39;&lt;/span&gt;.
 
   Selection    Command
 -----------------------------------------------
-   &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;           /opt/jdk1.8.0_45/bin/java
+   1           /opt/jdk1.8.0_45/bin/java
 
-Enter to keep the current selection&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, or &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;selection number: 1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Enter to keep the current selection[+], or &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;selection number: 1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;At this point &lt;em&gt;Java 8&lt;/em&gt; has been successfully installed on your system.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;If you performed this installation in a Development Server,  we also recommend to setup javac and jar commands path using alternatives&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/jar jar $JAVA_HOME/bin/jar 1&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/jar jar $JAVA_HOME/bin/jar 1&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 1&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# alternatives --set jar $JAVA_HOME/bin/jar&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# alternatives --set javac $JAVA_HOME/bin/javac&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;c&quot;&gt;# alternatives --set javac $JAVA_HOME/bin/javac&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
       </item>
     
@@ -639,15 +703,22 @@ Enter to keep the current selection&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt
         <author>Aigars Dzerviniks</author>
         <description>&lt;p&gt;Hello World!&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# show.html.erb&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# show.html.erb&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;foo&#39;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
       </item>
