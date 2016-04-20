@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" 
+      content="IntroDocker requires a 64-bit installation regardless of your CentOS version. Also, your kernel must be 3.10 at minim..." >
+<meta name="author" content="Aigars Dzerviniks">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>Install Docker on CentOS 7 &middot; Brume</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="/public/css/animate.min.css">
+<link rel="stylesheet" href="/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+
+
+<!-- feed links -->
+<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
+
+  </head>
+  <body>
+    <div class="container amber">
+      <header class="top row gutters">
+        <div class="col span_2 center">
+          <!-- TODO: add baseurl to the logo link -->
+          <a href="" id="logo" title="Brume"
+             style="background-image: url(https://pbs.twimg.com/profile_images/378800000255118762/5faff7b8fcdde5d47ffeafcea3540503.png);"></a>
+        </div>
+        <nav class="col span_10 top-navbar">
+  
+  <a href="/" title="Home"
+     >Home</a>
+  
+  <a href="/about" title="About"
+     >About</a>
+  
+</nav>
+
+      </header>
+
+      <article class="single row gutters">
+  <time class="published" datetime="2016-04-18">18 April 2016</time>
+  <h2>Install Docker on CentOS 7</h2>
+
+  <h3 id="intro">Intro</h3>
+
+<p>Docker requires a 64-bit installation regardless of your CentOS version. Also, your kernel must be 3.10 at minimum, which CentOS 7 runs.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>uname -r
+3.10.0-229.el7.x86_64</code></pre></figure>
+
+<h3 id="installing">Installing</h3>
+
+<p>Make sure your existing yum packages are up-to-date.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># yum update</span></code></pre></figure>
+
+<p>Add the yum repository file</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>sudo tee /etc/yum.repos.d/docker.repo <span class="sh">&lt;&lt;-'EOF'
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+</span><span class="err">EOF</span></code></pre></figure>
+
+<p>Install the Docker package</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># yum install docker-engine</span></code></pre></figure>
+
+<p>Start the Docker daemon</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># service docker start</span></code></pre></figure>
+
+<p>To ensure Docker starts when you boot your system, do the following:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># systemctl enable docker.service</span></code></pre></figure>
+
+
+</article>
+
+
+      <footer>
+        <p>
+          This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/deed.en_US">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/public/js/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("article").fitVids();
+      });
+    </script>
+  </body>
+</html>

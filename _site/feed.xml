@@ -6,9 +6,53 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>It's simple. It's easy to use. It's a Jekyll theme.</description>
     <language>en-us</language>
-    <pubDate>Wed, 24 Feb 2016 19:55:58 -0600</pubDate>
-    <lastBuildDate>Wed, 24 Feb 2016 19:55:58 -0600</lastBuildDate>
+    <pubDate>Tue, 19 Apr 2016 08:14:38 -0500</pubDate>
+    <lastBuildDate>Tue, 19 Apr 2016 08:14:38 -0500</lastBuildDate>
 
+    
+      <item>
+        <title>Install Docker on CentOS 7</title>
+        <link>/install-docker-on-centos7</link>
+        <pubDate>Mon, 18 Apr 2016 00:00:00 -0500</pubDate>
+        <author>Aigars Dzerviniks</author>
+        <description>&lt;h3 id=&quot;intro&quot;&gt;Intro&lt;/h3&gt;
+
+&lt;p&gt;Docker requires a 64-bit installation regardless of your CentOS version. Also, your kernel must be 3.10 at minimum, which CentOS 7 runs.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;uname -r
+3.10.0-229.el7.x86_64&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;installing&quot;&gt;Installing&lt;/h3&gt;
+
+&lt;p&gt;Make sure your existing yum packages are up-to-date.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum update&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Add the yum repository file&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo tee /etc/yum.repos.d/docker.repo &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt;-&#39;EOF&#39;
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;EOF&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Install the Docker package&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# yum install docker-engine&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Start the Docker daemon&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# service docker start&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To ensure Docker starts when you boot your system, do the following:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# systemctl enable docker.service&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+      </item>
     
       <item>
         <title>Install EPEL Repository on CentOS 7</title>
